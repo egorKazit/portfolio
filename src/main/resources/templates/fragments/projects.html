@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+
+<section class="project_section layout_padding-bottom">
+    <div class="container">
+        <div class="heading_container">
+            <h2>
+                [[${general.getProjects()}]]
+            </h2>
+        </div>
+        <div class="project_container layout_padding2-top">
+            <div class="box"
+                 th:each="project: ${projects}">
+                <img th:src="${project.getPicture()}" alt=""
+                     th:data-url=${project.getReference()}
+                     th:onclick="|document.location=this.getAttribute('data-url');return false;|"/>
+            </div>
+        </div>
+    </div>
+</section>

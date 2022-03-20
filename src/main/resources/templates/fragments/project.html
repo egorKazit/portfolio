@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+
+<section class="about_section layout_padding">
+    <div class="container">
+        <div class="heading_container">
+            <h2>
+                [[${project.getTitle()}]]
+            </h2>
+        </div>
+        <div class="box layout_padding2-top layout_padding-bottom">
+            <div class="img-box">
+                <img th:src="${project.getPicture()}" alt=""/>
+            </div>
+            <div class="detail-box">
+                <p>
+                    [[${project.getText()}]]
+                </p>
+            </div>
+        </div>
+    </div>
+</section>

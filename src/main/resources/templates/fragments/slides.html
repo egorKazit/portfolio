@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<div
+        id="carouselExampleControls"
+        class="carousel slide"
+        data-ride="carousel">
+    <div class="carousel-inner">
+        <div th:each="slide, iterstat : ${slides}"
+             th:class="${iterstat.index}== 0 ? 'carousel-item':'carousel-item active'">
+            <!--            class="carousel-item active"-->
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-6 offset-lg-1">
+                        <div class="detail-box">
+                            <div class="heading_box">
+                                <h2>[[${slide.getDescription()}]] <span th:text="${slide.getGeneralWord()}"></span></h2>
+                                <h1>
+                                    [[${general.getPortfolio()}]]
+                                </h1>
+                            </div>
+                            <div>
+                                <a href="">
+                                    [[${general.getRead()}]]
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-5 px-0">
+                        <div class="img-box">
+                            <img th:src="${slide.picture}"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="slider_btn-container">
+    <a
+            class="carousel-control-prev"
+            href="#carouselExampleControls"
+            role="button"
+            data-slide="prev"
+    >
+        <span class="sr-only">Previous</span>
+    </a>
+    <a
+            class="carousel-control-next"
+            href="#carouselExampleControls"
+            role="button"
+            data-slide="next"
+    >
+        <span class="sr-only">Next</span>
+    </a>
+</div>

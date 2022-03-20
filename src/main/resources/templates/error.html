@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <header th:insert="fragments/basic.html"></header>
+</head>
+
+<body>
+<div class="hero_area">
+    <!-- header section strats -->
+    <header class="header_section">
+        <header th:insert="fragments/header.html"></header>
+    </header>
+    <!-- end header section -->
+</div>
+
+<section class="about_section layout_padding">
+    <div class="container">
+        <div class="heading_container">
+            <h2>
+                404
+            </h2>
+        </div>
+        <div class="box layout_padding2-top layout_padding-bottom">
+            <div class="detail-box">
+                <p>
+                    Page Not Found
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- end about section -->
+
+<!-- info section -->
+<div>
+    <section th:insert="fragments/contacts.html"></section>
+</div>
+<!-- end info_section -->
+
+<!-- footer section -->
+<div>
+    <section th:insert="fragments/footer.html"></section>
+</div>
+<!-- end footer section -->
+
+<div>
+    <section th:insert="fragments/script.html"></section>
+</div>
+
+</body>
+
+</html>

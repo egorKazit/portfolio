@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+
+<section class="about_section layout_padding" th:fragment="specificAbout(title, text, picture, reference, hiden)">
+    <div class="container">
+        <div th:if="!${hiden}" class="heading_container">
+            <h2>
+                [[${title}]]
+            </h2>
+        </div>
+        <div class="box layout_padding2-top layout_padding-bottom">
+            <div class="detail-box">
+                <p>
+                    [[${text}]]
+                </p>
+            </div>
+            <div th:if="!${hiden}" class="img-box">
+                <img th:src="${picture}" alt=""/>
+            </div>
+        </div>
+    </div>
+    <div th:if="!${hiden}" class="btn-box">
+        <a th:href="${reference}">
+            [[${general.getRead()}]]
+        </a>
+    </div>
+</section>

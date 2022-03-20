@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<section class="design_section layout_padding-top">
+    <div class="container">
+        <div class="heading_container">
+            <h2>
+                [[${general.getSkills()}]]
+            </h2>
+        </div>
+        <div class="design_container layout_padding2">
+            <div th:each="skill, iterstat: ${skills}">
+                <div th:class="'box b-'+ ${iterstat.index + 1}">
+                    <h5>
+                        <div th:each="description: ${skill.getDescriptions()}">
+                            [[${description}]]<br>
+                        </div>
+                    </h5>
+                </div>
+            </div>
+        </div>
+</section>

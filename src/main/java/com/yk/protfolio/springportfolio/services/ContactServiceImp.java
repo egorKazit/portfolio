@@ -1,9 +1,9 @@
 package com.yk.protfolio.springportfolio.services;
 
 import com.yk.protfolio.springportfolio.persistence.ContactDAO;
-import com.yk.protfolio.springportfolio.utilities.UpdateEntityStatus;
 import com.yk.protfolio.springportfolio.schema.Contact;
 import com.yk.protfolio.springportfolio.utilities.OperationResult;
+import com.yk.protfolio.springportfolio.utilities.UpdateEntityStatus;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
@@ -11,9 +11,9 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
 import javax.persistence.Id;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.configurationprocessor.json.JSONException;
-import org.springframework.boot.configurationprocessor.json.JSONObject;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -23,7 +23,7 @@ public class ContactServiceImp implements ContactService {
     private ContactDAO contactDAO;
 
     @Override
-    public OperationResult<Contact> postContact(JSONObject contact) {
+    public OperationResult<Contact> postContact(JSONObject contact) throws JSONException {
         Contact.ContactBuilder contactBuilder = Contact.builder();
         OperationResult.OperationResultBuilder<Contact> result = OperationResult.builder();
         List<String> messages = new ArrayList<>();

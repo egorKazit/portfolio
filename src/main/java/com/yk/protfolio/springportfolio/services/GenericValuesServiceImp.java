@@ -1,5 +1,10 @@
 package com.yk.protfolio.springportfolio.services;
 
+import com.yk.protfolio.springportfolio.persistence.GeneralValueDAO;
+import com.yk.protfolio.springportfolio.schema.GeneralValue;
+import com.yk.protfolio.springportfolio.utilities.GeneralInfoConstants;
+import java.util.Locale;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -8,47 +13,59 @@ import org.springframework.stereotype.Service;
 @Service
 public class GenericValuesServiceImp implements GenericValuesService {
 
+    @Autowired
+    private GeneralValueDAO generalValueDAO;
+
     @Override
     public String getPortfolio() {
-        return "Portfolio";
+        return getElementByName(GeneralInfoConstants.MAIN_NAME, "Portfolio");
     }
 
     @Override
     public String getHome() {
-        return "Home";
+        return getElementByName(GeneralInfoConstants.HOME, "Home");
     }
 
     @Override
     public String getAbout() {
-        return "About";
+        return getElementByName(GeneralInfoConstants.ABOUT, "About");
     }
 
     @Override
     public String getWork() {
-        return "MyWork";
+        return getElementByName(GeneralInfoConstants.WORK, "MyWork");
     }
 
     @Override
     public String getContact() {
-        return "Contact Us";
+        return getElementByName(GeneralInfoConstants.CONTACT, "Contact Us");
     }
 
     @Override
     public String getFollows() {
-        return "Follow Us";
+        return getElementByName(GeneralInfoConstants.FOLLOW, "Follow Us");
     }
 
     @Override
     public String getProjects() {
-        return "Our Projects";
+        return getElementByName(GeneralInfoConstants.PROJECTS, "Our Projects");
     }
 
+    @Override
     public String getSkills() {
-        return "Abap/Java Developer";
+        return getElementByName(GeneralInfoConstants.SKILLS, "Value that are not provided");
     }
 
+    @Override
     public String getRead() {
-        return "Read More";
+        return getElementByName(GeneralInfoConstants.READ, "Read More");
+    }
+
+    private String getElementByName(String name, String defaultValue) {
+        return generalValueDAO.getGeneralValues().stream().filter(generalValue -> generalValue.getInternalName()
+                        .toUpperCase(Locale.ROOT).equals(name))
+                .findFirst().orElseGet(() -> GeneralValue.builder().externalName(defaultValue).build())
+                .getExternalName();
     }
 
 }

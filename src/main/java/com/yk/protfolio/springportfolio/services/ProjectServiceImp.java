@@ -15,6 +15,9 @@ public class ProjectServiceImp implements ProjectService {
     @Autowired
     private ProjectDAO projectDAO;
 
+    @Autowired
+    private ImageManager imageManager;
+
     /**
      * gets list of projects
      *
@@ -22,7 +25,9 @@ public class ProjectServiceImp implements ProjectService {
      */
     @Override
     public List<Project> getProjects() {
-        return projectDAO.getProjects();
+        List<Project> projects = projectDAO.getProjects();
+        imageManager.uploadImage(projects, Project::getPicture, Project::getImage);
+        return projects;
     }
 
     /**
@@ -32,6 +37,8 @@ public class ProjectServiceImp implements ProjectService {
      */
     @Override
     public Project getProject(int id) {
-        return projectDAO.getProject(id);
+        Project project = projectDAO.getProject(id);
+        imageManager.uploadImage(List.of(project), Project::getPicture, Project::getImage);
+        return project;
     }
 }

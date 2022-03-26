@@ -39,8 +39,8 @@ public class About implements Serializable {
     private String text;
     @Column(name = "picture")
     private String picture;
-    @Column(name = "reference")
-    private String reference;
+    @Column(name = "image", length = 16777215)
+    private byte[] image;
     @Setter
     private boolean isHidden;
 }

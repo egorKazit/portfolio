@@ -27,18 +27,12 @@
     <section th:insert="fragments/skills.html"></section>
 </div>
 
-<!-- end design section   -->
-<div>
-    <hr class="section_hr"/>
-</div>
-<!-- about section -->
-
-<section class="about_section layout_padding-bottom">
+<section th:if="${about != null}" class="about_section layout_padding-bottom">
     <div th:insert="fragments/about.html :: specificAbout(
     ${about.getTitle()},
     ${about.getText()},
-    ${about.getPicture()},
-    ${about.getReference()},
+    |images/${about.getPicture()}|,
+    |about.html?id=${about.getId()}|,
     ${about.isHidden()})"></div>
 </section>
 
@@ -59,7 +53,7 @@
         <div class="row">
             <div class="col-md-6">
                 <div class="img-box">
-                    <img src="images/expand-img.jpg" alt=""/>
+                    <img src="images/final/expand-img.jpg" alt=""/>
                 </div>
             </div>
             <div class="col-md-6">

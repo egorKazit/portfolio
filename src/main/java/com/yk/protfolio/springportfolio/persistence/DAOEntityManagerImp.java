@@ -5,17 +5,21 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceException;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 import javax.transaction.Transactional;
+import lombok.SneakyThrows;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
-public class DAOEntityManagerImp implements DAOEntityManager {
+@Log4j2
+class DAOEntityManagerImp implements DAOEntityManager {
 
     @Autowired
     private EntityManager entityManager;
@@ -28,6 +32,7 @@ public class DAOEntityManagerImp implements DAOEntityManager {
         return entityManager.createQuery(criteriaQuery).getResultList();
     }
 
+    @SneakyThrows
     @Override
     public <Entity> Entity getEntityByKeys(Class<Entity> entityClass, Map<String, Object> keys) {
         CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
@@ -38,7 +43,11 @@ public class DAOEntityManagerImp implements DAOEntityManager {
                 .collect(Collectors.toList());
         Predicate finalPredicate = criteriaBuilder.and(predicates.toArray(Predicate[]::new));
         criteriaQuery.where(finalPredicate);
-        return entityManager.createQuery(criteriaQuery).getSingleResult();
+        try {
+            return entityManager.createQuery(criteriaQuery).getSingleResult();
+        } catch (NoResultException e) {
+            return null;
+        }
     }
 
     @Override

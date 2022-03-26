@@ -37,6 +37,6 @@ public class Project {
     @Column(name = "text")
     @NotEmpty(message = "*Please provide description")
     private String text;
-    @Column(name = "reference")
-    private String reference;
+    @Column(name = "image", length = 16777215)
+    private byte[] image;
 }

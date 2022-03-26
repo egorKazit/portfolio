@@ -10,7 +10,7 @@ services:
       - MYSQL_USER=DockerMySQLUsername
       - MYSQL_PASSWORD=DockerMySQLPassword
       - MYSQL_DATABASE=portfolio
-    command: --default-authentication-plugin=mysql_native_password
+    command: mysqld --sql_mode="NO_ENGINE_SUBSTITUTION" --default-authentication-plugin=mysql_native_password
     ports:
       - "3306:3306"
     restart: always

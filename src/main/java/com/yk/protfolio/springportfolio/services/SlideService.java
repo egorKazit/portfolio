@@ -13,4 +13,5 @@ public interface SlideService {
      * @return list of slides
      */
     List<Slide> getSlides();
+
 }

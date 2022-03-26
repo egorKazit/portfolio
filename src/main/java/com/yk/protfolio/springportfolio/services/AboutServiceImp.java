@@ -15,6 +15,9 @@ public class AboutServiceImp implements AboutService {
     @Autowired
     private AboutDAO aboutDAO;
 
+    @Autowired
+    private ImageManager imageManager;
+
     /**
      * gets general about information
      *
@@ -24,6 +27,7 @@ public class AboutServiceImp implements AboutService {
     public About getGeneralAbout() {
         About about = aboutDAO.getAbout(0);
         if (about != null) {
+            imageManager.uploadImage(List.of(about), About::getPicture, About::getImage);
             about.setHidden(false);
         }
         return about;
@@ -38,6 +42,7 @@ public class AboutServiceImp implements AboutService {
     public About getDetailedAbout(int id) {
         About about = aboutDAO.getAbout(id);
         if (about != null) {
+            imageManager.uploadImage(List.of(about), About::getPicture, About::getImage);
             about.setHidden(true);
         }
         return about;
@@ -50,6 +55,8 @@ public class AboutServiceImp implements AboutService {
      */
     @Override
     public List<About> getAboutList() {
-        return aboutDAO.getAbouts();
+        List<About> abouts = aboutDAO.getAbouts();
+        imageManager.uploadImage(abouts, About::getPicture, About::getImage);
+        return abouts;
     }
 }

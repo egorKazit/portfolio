@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<section class="design_section layout_padding-top">
+<section th:if="!${skills.isEmpty()}" class="design_section layout_padding-top">
     <div class="container">
         <div class="heading_container">
             <h2>
@@ -17,4 +17,10 @@
                 </div>
             </div>
         </div>
+        <!-- end design section   -->
+        <div>
+            <hr class="section_hr"/>
+        </div>
+        <!-- about section -->
+    </div>
 </section>

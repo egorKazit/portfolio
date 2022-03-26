@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<section class="project_section layout_padding-bottom">
+<section th:if="!${projects.isEmpty()}" class="project_section layout_padding-bottom">
     <div class="container">
         <div class="heading_container">
             <h2>
@@ -10,8 +10,8 @@
         <div class="project_container layout_padding2-top">
             <div class="box"
                  th:each="project: ${projects}">
-                <img th:src="${project.getPicture()}" alt=""
-                     th:data-url=${project.getReference()}
+                <img th:src="|images/${project.getPicture()}|" alt=""
+                     th:data-url="|project-${project.getId()}.html|"
                      th:onclick="|document.location=this.getAttribute('data-url');return false;|"/>
             </div>
         </div>

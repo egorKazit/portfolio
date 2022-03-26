@@ -22,8 +22,8 @@
         <div th:insert="fragments/about.html :: specificAbout(
         ${about.getTitle()},
         ${about.getText()},
-        ${about.getPicture()},
-        ${about.getReference()},
+        |images/${about.getPicture()}|,
+        |about.html?id=${about.getId()}|,
         ${about.isHidden()})"></div>
     </div>
 </section>

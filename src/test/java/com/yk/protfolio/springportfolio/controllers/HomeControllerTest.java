@@ -56,15 +56,14 @@ class HomeControllerTest {
                 .id(0)
                 .title("AboutTitle")
                 .picture("AboutPic")
-                .reference("AboutRef")
+                //.reference("AboutRef")
                 .text("")
                 .isHidden(false).build());
         when(projectService.getProjects()).thenReturn(List.of(Project.builder()
                 .id(0)
                 .title("")
                 .text("")
-                .picture("ProjectPic")
-                .reference("ProjectRef").build()));
+                .picture("ProjectPic").build()));
         when(skillService.getSkills()).thenReturn(List.of(Skill.builder()
                 .id(0)
                 .description("SkillDescr")
@@ -75,9 +74,7 @@ class HomeControllerTest {
                 .andExpect(content().string(containsString("SlidePic")))
                 .andExpect(content().string(containsString("AboutTitle")))
                 .andExpect(content().string(containsString("AboutPic")))
-                .andExpect(content().string(containsString("AboutRef")))
                 .andExpect(content().string(containsString("ProjectPic")))
-                .andExpect(content().string(containsString("ProjectRef")))
                 .andExpect(content().string(containsString("SkillDescr")));
 
     }

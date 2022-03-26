@@ -1,6 +1,5 @@
 package com.yk.protfolio.springportfolio.schema;
 
-import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -13,6 +12,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.hibernate.validator.constraints.Length;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 
 @Builder
@@ -21,20 +21,18 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 @AllArgsConstructor
 @NoArgsConstructor
 @EnableAutoConfiguration
-@Entity(name = "slide")
-@Table(name = "slide")
-public class Slide implements Serializable {
+@Entity(name = "general")
+@Table(name = "general")
+public class GeneralValue {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
     private int id;
-    @Column(name = "description")
+    @Column(name = "internal_name")
+    @Length(min = 5, message = "*Title should have length more then 5")
+    @NotEmpty(message = "*Please provide name")
+    private String internalName;
+    @Column(name = "external_name")
     @NotEmpty(message = "*Please provide description")
-    private String description;
-    @Column(name = "general_word")
-    private String generalWord;
-    @Column(name = "picture")
-    private String picture;
-    @Column(name = "image", length = 16777215)
-    private byte[] image;
+    private String externalName;
 }

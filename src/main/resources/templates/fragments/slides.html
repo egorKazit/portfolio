@@ -17,16 +17,11 @@
                                     [[${general.getPortfolio()}]]
                                 </h1>
                             </div>
-                            <div>
-                                <a href="">
-                                    [[${general.getRead()}]]
-                                </a>
-                            </div>
                         </div>
                     </div>
                     <div class="col-lg-5 px-0">
                         <div class="img-box">
-                            <img th:src="${slide.picture}"/>
+                            <img th:src="|images/${slide.getPicture()}|"/>
                         </div>
                     </div>
                 </div>

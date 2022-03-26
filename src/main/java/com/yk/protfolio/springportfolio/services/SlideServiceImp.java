@@ -15,6 +15,9 @@ public class SlideServiceImp implements SlideService {
     @Autowired
     private SlideDAOImp slideDAOImp;
 
+    @Autowired
+    private ImageManager imageService;
+
     /**
      * gets list of slides
      *
@@ -22,6 +25,9 @@ public class SlideServiceImp implements SlideService {
      */
     @Override
     public List<Slide> getSlides() {
-        return slideDAOImp.getSlides();
+        List<Slide> slides = slideDAOImp.getSlides();
+        imageService.uploadImage(slides, Slide::getPicture, Slide::getImage);
+        return slides;
     }
+
 }

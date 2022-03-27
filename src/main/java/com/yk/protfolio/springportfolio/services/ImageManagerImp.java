@@ -28,11 +28,9 @@ class ImageManagerImp implements ImageManager {
     public void init() {
         File imageFolder = new File(customProperties.getStaticImageFolder());
         if (!imageFolder.exists()) {
-            System.out.println("True");
-            imageFolder.mkdir();
+            assert imageFolder.mkdir();
         }
         if (imageFolder.listFiles() != null)
-            System.out.println("True");
             Arrays.stream(Objects.requireNonNull(imageFolder.listFiles())).filter(file -> !file.isDirectory()
                     && !file.getName().equals(FolderConstants.IMAGE_FINAL)).forEach(File::delete);
     }

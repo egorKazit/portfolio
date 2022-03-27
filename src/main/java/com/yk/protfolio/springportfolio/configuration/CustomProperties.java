@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 public class CustomProperties {
 
     @Getter
-    @Value("${portfolio.image.folder}")
+    @Value("${portfolio.image.folder:/tmp/static/images/}")
     private String staticImageFolder;
 
 }

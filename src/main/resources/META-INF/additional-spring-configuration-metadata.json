@@ -1,0 +1,10 @@
+{
+  "properties": [
+    {
+      "name": "portfolio.image.folder",
+      "type": "java.lang.String",
+      "description": "Custom folder for images.",
+      "defaultValue": "/tmp/static/images"
+    }
+  ]
+}

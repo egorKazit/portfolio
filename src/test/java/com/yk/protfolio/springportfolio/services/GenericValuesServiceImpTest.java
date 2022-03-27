@@ -3,6 +3,7 @@ package com.yk.protfolio.springportfolio.services;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.mockito.Mockito.when;
 
+import com.yk.protfolio.springportfolio.configuration.CustomProperties;
 import com.yk.protfolio.springportfolio.persistence.GeneralValueDAO;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Arrays;
@@ -13,6 +14,7 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 
 @SpringBootTest
 @Log4j2

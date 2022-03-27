@@ -1,15 +1,14 @@
 package com.yk.protfolio.springportfolio.controllers;
 
-import static org.hamcrest.Matchers.containsString;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import com.yk.protfolio.springportfolio.components.GenericValuesWrapper;
+import com.yk.protfolio.springportfolio.configuration.CustomProperties;
 import com.yk.protfolio.springportfolio.schema.About;
 import com.yk.protfolio.springportfolio.services.AboutService;
 import com.yk.protfolio.springportfolio.services.GenericValuesService;
@@ -34,14 +33,18 @@ class AboutControllerTest {
     AboutService aboutService;
 
     @MockBean
-    GenericValuesService genericValuesService;
+    ImageManager imageManager;
 
     @MockBean
-    ImageManager imageManager;
+    CustomProperties customProperties;
+
+    @MockBean
+    GenericValuesService genericValuesService;
 
     @Test
     void getWithId() throws Exception {
         doNothing().when(imageManager).uploadImage(any(), any(), any());
+        when(customProperties.getStaticImageFolder()).thenReturn("");
         Arrays.stream(GenericValuesService.class.getDeclaredMethods())
                 .forEach(method -> {
                     try {
@@ -65,6 +68,7 @@ class AboutControllerTest {
     @Test
     void getWithoutId() throws Exception {
         doNothing().when(imageManager).uploadImage(any(), any(), any());
+        when(customProperties.getStaticImageFolder()).thenReturn("");
         Arrays.stream(GenericValuesService.class.getDeclaredMethods())
                 .forEach(method -> {
                     try {

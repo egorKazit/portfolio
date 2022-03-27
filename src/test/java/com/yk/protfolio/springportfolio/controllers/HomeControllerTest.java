@@ -7,6 +7,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+import com.yk.protfolio.springportfolio.configuration.CustomProperties;
 import com.yk.protfolio.springportfolio.schema.About;
 import com.yk.protfolio.springportfolio.schema.Project;
 import com.yk.protfolio.springportfolio.schema.Skill;
@@ -44,8 +45,12 @@ class HomeControllerTest {
     @MockBean
     GenericValuesService genericValuesService;
 
+    @MockBean
+    CustomProperties customProperties;
+
     @Test
     void getHome() throws Exception {
+        when(customProperties.getStaticImageFolder()).thenReturn("");
         when(slideService.getSlides()).thenReturn(List.of(Slide.builder()
                 .id(0)
                 .description("SlideDescr")

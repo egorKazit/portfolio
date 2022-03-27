@@ -28,7 +28,7 @@ class ImageManagerImp implements ImageManager {
     public void init() {
         File imageFolder = new File(customProperties.getStaticImageFolder());
         if (!imageFolder.exists()) {
-            imageFolder.mkdir();
+            imageFolder.mkdirs();
         }
         if (imageFolder.listFiles() != null)
             Arrays.stream(Objects.requireNonNull(imageFolder.listFiles())).filter(file -> !file.isDirectory()

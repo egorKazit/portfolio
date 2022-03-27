@@ -10,7 +10,7 @@
         <div class="project_container layout_padding2-top">
             <div class="box"
                  th:each="project: ${projects}">
-                <img th:src="|images/${project.getPicture()}|" alt=""
+                <img th:src="${project.getPicture()}" alt=""
                      th:data-url="|project-${project.getId()}.html|"
                      th:onclick="|document.location=this.getAttribute('data-url');return false;|"/>
             </div>

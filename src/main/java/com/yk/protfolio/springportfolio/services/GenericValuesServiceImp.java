@@ -1,5 +1,6 @@
 package com.yk.protfolio.springportfolio.services;
 
+import com.yk.protfolio.springportfolio.configuration.CustomProperties;
 import com.yk.protfolio.springportfolio.persistence.GeneralValueDAO;
 import com.yk.protfolio.springportfolio.schema.GeneralValue;
 import com.yk.protfolio.springportfolio.utilities.GeneralInfoConstants;
@@ -15,6 +16,9 @@ public class GenericValuesServiceImp implements GenericValuesService {
 
     @Autowired
     private GeneralValueDAO generalValueDAO;
+
+    @Autowired
+    private CustomProperties customProperties;
 
     @Override
     public String getPortfolio() {

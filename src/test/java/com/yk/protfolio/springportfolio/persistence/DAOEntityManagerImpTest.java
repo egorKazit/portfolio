@@ -1,20 +1,24 @@
 package com.yk.protfolio.springportfolio.persistence;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.mockito.Mockito.any;
 import static org.mockito.Mockito.anyString;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
+import com.yk.protfolio.springportfolio.utilities.UpdateEntityStatus;
 import java.util.List;
 import java.util.Map;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
+import javax.persistence.PersistenceException;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Path;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -42,7 +46,7 @@ class DAOEntityManagerImpTest {
         TypedQuery<MockInterface> typedQuery = (TypedQuery<MockInterface>) mock(TypedQuery.class);
         when(typedQuery.getResultList()).thenReturn(mockInterfaces);
         when(entityManager.createQuery(criteriaQuery)).thenReturn(typedQuery);
-        Assertions.assertEquals(mockInterfaces, daoEntityManagerImp.getListOfEntities(MockInterface.class));
+        assertEquals(mockInterfaces, daoEntityManagerImp.getListOfEntities(MockInterface.class));
     }
 
     @Test
@@ -64,7 +68,31 @@ class DAOEntityManagerImpTest {
         TypedQuery<MockInterface> typedQuery = (TypedQuery<MockInterface>) mock(TypedQuery.class);
         when(typedQuery.getSingleResult()).thenReturn(mockInterface);
         when(entityManager.createQuery(criteriaQuery)).thenReturn(typedQuery);
-        Assertions.assertEquals(mockInterface, daoEntityManagerImp.getEntityByKeys(MockInterface.class, Map.of("id", 1)));
+        assertEquals(mockInterface, daoEntityManagerImp.getEntityByKeys(MockInterface.class, Map.of("id", 1)));
+        when(typedQuery.getSingleResult()).thenThrow(new NoResultException());
+        when(entityManager.createQuery(criteriaQuery)).thenReturn(typedQuery);
+        assertNull(daoEntityManagerImp.getEntityByKeys(MockInterface.class, Map.of("id", 1)));
+    }
+
+    @Test
+    void updateEntity() {
+        MockInterface mockInterface = new MockInterface() {
+        };
+        when(entityManager.merge(mockInterface)).thenAnswer(invocationOnMock -> null);
+        UpdateEntityStatus<MockInterface> mockInterfaceUpdateEntityStatus =
+                daoEntityManagerImp.updateEntity(mockInterface);
+        assertEquals(UpdateEntityStatus.UPDATED, mockInterfaceUpdateEntityStatus.getStatus());
+        assertEquals(mockInterface, mockInterfaceUpdateEntityStatus.getEntity());
+    }
+
+    @Test
+    void updateEntityWithError() {
+        MockInterface mockInterface = new MockInterface() {
+        };
+        when(entityManager.merge(mockInterface)).thenThrow(new PersistenceException(""));
+        UpdateEntityStatus<MockInterface> mockInterfaceUpdateEntityStatus =
+                daoEntityManagerImp.updateEntity(mockInterface);
+        assertEquals(List.of(""), mockInterfaceUpdateEntityStatus.getMessages());
     }
 
     private interface MockInterface {

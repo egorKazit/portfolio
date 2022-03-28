@@ -16,12 +16,22 @@ import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+/**
+ * Service class to work on contract
+ */
 @Service
 public class ContactServiceImp implements ContactService {
 
     @Autowired
     private ContactDAO contactDAO;
 
+    /**
+     * posts contract
+     *
+     * @param contact contract
+     * @return operation result
+     * @throws JSONException error on json parsing
+     */
     @Override
     public OperationResult<Contact> postContact(JSONObject contact) throws JSONException {
         Contact.ContactBuilder contactBuilder = Contact.builder();

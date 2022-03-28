@@ -12,11 +12,13 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 import javax.transaction.Transactional;
-import lombok.SneakyThrows;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+/**
+ * DAO entity manager class
+ */
 @Component
 @Log4j2
 class DAOEntityManagerImp implements DAOEntityManager {
@@ -24,6 +26,13 @@ class DAOEntityManagerImp implements DAOEntityManager {
     @Autowired
     private EntityManager entityManager;
 
+    /**
+     * gets list of generic entity
+     *
+     * @param entityClass entity class
+     * @param <Entity>    generic entity
+     * @return list of entities
+     */
     @Override
     public <Entity> List<Entity> getListOfEntities(Class<Entity> entityClass) {
         CriteriaQuery<Entity> criteriaQuery = entityManager.getCriteriaBuilder()
@@ -32,7 +41,14 @@ class DAOEntityManagerImp implements DAOEntityManager {
         return entityManager.createQuery(criteriaQuery).getResultList();
     }
 
-    @SneakyThrows
+    /**
+     * gets generic entry based on provided keys
+     *
+     * @param entityClass entity class
+     * @param keys        keys
+     * @param <Entity>    generic entity
+     * @return entity
+     */
     @Override
     public <Entity> Entity getEntityByKeys(Class<Entity> entityClass, Map<String, Object> keys) {
         CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
@@ -50,6 +66,13 @@ class DAOEntityManagerImp implements DAOEntityManager {
         }
     }
 
+    /**
+     * updates entity and returns the status of updated entity
+     *
+     * @param entity   entity
+     * @param <Entity> generic entity
+     * @return update entity status
+     */
     @Override
     @Transactional
     public <Entity> UpdateEntityStatus<Entity> updateEntity(Entity entity) {

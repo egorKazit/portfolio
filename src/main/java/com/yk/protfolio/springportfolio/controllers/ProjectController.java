@@ -10,12 +10,22 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
+/**
+ * Controller to handle Project requests
+ */
 @Controller
 public class ProjectController {
 
     @Autowired
     private ProjectService projectService;
 
+    /**
+     * handles get requests
+     *
+     * @param id    project id
+     * @param model model
+     * @return template name
+     */
     @GetMapping("/project-{id}.html")
     public String getProject(@PathVariable String id, Model model) {
         String out = ControllerUtils.getPage(Page.PROJECT, model);

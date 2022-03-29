@@ -16,6 +16,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
 
+/**
+ * Service class to work on image
+ */
 @Log4j2
 @Component
 @Configuration
@@ -24,6 +27,9 @@ class ImageManagerImp implements ImageManager {
     @Autowired
     private CustomProperties customProperties;
 
+    /**
+     * init static folder for images
+     */
     @PostConstruct
     public void init() {
         File imageFolder = new File(customProperties.getStaticImageFolder());
@@ -35,6 +41,14 @@ class ImageManagerImp implements ImageManager {
                     && !file.getName().equals(FolderConstants.IMAGE_FINAL)).forEach(File::delete);
     }
 
+    /**
+     * uploads image
+     *
+     * @param entities           list og entities
+     * @param getPictureFunction function to get picture
+     * @param getImageFunction   function to get image
+     * @param <Entity>           generic entity
+     */
     @Override
     public <Entity> void uploadImage(List<Entity> entities, Function<Entity, String> getPictureFunction, Function<Entity, byte[]> getImageFunction) {
         File directory = new File(customProperties.getStaticImageFolder());

@@ -18,6 +18,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
+/**
+ * Controller to handle Contract requests
+ */
 @Controller
 @Log4j2
 public class ContactController {
@@ -25,11 +28,25 @@ public class ContactController {
     @Autowired
     private ContactService contactService;
 
+    /**
+     * handles get requests
+     *
+     * @param model model
+     * @return template name
+     */
     @GetMapping("/contact.html")
     public String getContacts(Model model) {
         return ControllerUtils.getPage(Page.CONTACT, model);
     }
 
+    /**
+     * handles post requests
+     *
+     * @param request request data
+     * @return template name
+     * @throws IOException   exception on read
+     * @throws JSONException exception on JSon deserialization
+     */
     @PostMapping("/contact")
     public ResponseEntity<String> sendRequest(HttpServletRequest request) throws IOException, JSONException {
         BufferedReader reader = request.getReader();

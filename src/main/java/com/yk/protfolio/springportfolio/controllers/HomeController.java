@@ -11,6 +11,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+/**
+ * Controller to handle Contract requests
+ */
 @Controller
 public class HomeController {
 
@@ -23,6 +26,12 @@ public class HomeController {
     @Autowired
     private SkillService skillService;
 
+    /**
+     * handles get requests
+     *
+     * @param model model
+     * @return template name
+     */
     @GetMapping("/index.html")
     public String getHome(Model model) {
         model.addAttribute(Attributes.SLIDES, slideService.getSlides());

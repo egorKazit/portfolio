@@ -30,6 +30,6 @@ class SlideServiceImpTest {
         List<Slide> slides = List.of(new Slide(), new Slide());
         when(slideDAOImp.getSlides()).thenReturn(slides);
         doNothing().when(imageManagerImp).uploadImage(any(), any(), any());
-        assertEquals(slides, slideDAOImp.getSlides());
+        assertEquals(slides, slideServiceImp.getSlides());
     }
 }

@@ -5,6 +5,9 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
 
+/**
+ * Configuration class for custom fields
+ */
 @Configuration
 @Component
 public class CustomProperties {

@@ -17,6 +17,8 @@ public class OperationResult<Entity> {
 
     public String getMessages() {
         JSONArray resultArray = new JSONArray();
+        if (messages == null)
+            return null;
         messages.forEach(resultArray::put);
         return resultArray.toString();
     }

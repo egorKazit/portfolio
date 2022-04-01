@@ -28,5 +28,8 @@ class GeneralValueDAOImpTest {
                 .build();
         when(daoEntityManager.getListOfEntities(GeneralValue.class)).thenReturn(List.of(generalValue));
         assertEquals(List.of(generalValue), generalValueDAOImp.getGeneralValues());
+        assertEquals(91, generalValueDAOImp.getGeneralValues().get(0).getId());
+        assertEquals("name", generalValueDAOImp.getGeneralValues().get(0).getInternalName());
+        assertEquals("Name", generalValueDAOImp.getGeneralValues().get(0).getExternalName());
     }
 }

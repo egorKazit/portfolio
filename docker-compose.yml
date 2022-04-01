@@ -5,6 +5,8 @@ services:
   mysql:
     image: mysql:latest
     container_name: mysql
+    volumes:
+      - mysql_data:/var/lib/mysql
     environment:
       - MYSQL_ROOT_PASSWORD=DockerMySQLPassword
       - MYSQL_USER=DockerMySQLUsername
@@ -30,3 +32,6 @@ services:
       PMA_PORT: 3306
       SPRING_DATASOURCE_USERNAME: root
       SPRING_DATASOURCE_PASSWORD: DockerMySQLPassword
+
+volumes:
+  mysql_data:

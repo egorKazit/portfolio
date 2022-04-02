@@ -49,7 +49,48 @@ class HomeControllerTest {
     CustomProperties customProperties;
 
     @Test
-    void getHome() throws Exception {
+    void getHomeAsIndex() throws Exception {
+        mockedAll();
+        mockMvc.perform(get("/")).andDo(print()).andExpect(status().isOk())
+                .andExpect(content().string(containsString("SlideDescr")))
+                .andExpect(content().string(containsString("SlideGenWord")))
+                .andExpect(content().string(containsString("SlidePic")))
+                .andExpect(content().string(containsString("AboutTitle")))
+                .andExpect(content().string(containsString("AboutPic")))
+                .andExpect(content().string(containsString("ProjectPic")))
+                .andExpect(content().string(containsString("SkillDescr")));
+
+    }
+
+    @Test
+    void getHomeAsSlash() throws Exception {
+        mockedAll();
+        mockMvc.perform(get("/index.html")).andDo(print()).andExpect(status().isOk())
+                .andExpect(content().string(containsString("SlideDescr")))
+                .andExpect(content().string(containsString("SlideGenWord")))
+                .andExpect(content().string(containsString("SlidePic")))
+                .andExpect(content().string(containsString("AboutTitle")))
+                .andExpect(content().string(containsString("AboutPic")))
+                .andExpect(content().string(containsString("ProjectPic")))
+                .andExpect(content().string(containsString("SkillDescr")));
+
+    }
+
+    @Test
+    void getHomeAsEmpty() throws Exception {
+        mockedAll();
+        mockMvc.perform(get("https://127.0.0.1")).andDo(print()).andExpect(status().isOk())
+                .andExpect(content().string(containsString("SlideDescr")))
+                .andExpect(content().string(containsString("SlideGenWord")))
+                .andExpect(content().string(containsString("SlidePic")))
+                .andExpect(content().string(containsString("AboutTitle")))
+                .andExpect(content().string(containsString("AboutPic")))
+                .andExpect(content().string(containsString("ProjectPic")))
+                .andExpect(content().string(containsString("SkillDescr")));
+
+    }
+
+    private void mockedAll() {
         when(customProperties.getStaticImageFolder()).thenReturn("");
         when(slideService.getSlides()).thenReturn(List.of(Slide.builder()
                 .id(0)
@@ -73,14 +114,5 @@ class HomeControllerTest {
                 .id(0)
                 .description("SkillDescr")
                 .build()));
-        mockMvc.perform(get("/index.html")).andDo(print()).andExpect(status().isOk())
-                .andExpect(content().string(containsString("SlideDescr")))
-                .andExpect(content().string(containsString("SlideGenWord")))
-                .andExpect(content().string(containsString("SlidePic")))
-                .andExpect(content().string(containsString("AboutTitle")))
-                .andExpect(content().string(containsString("AboutPic")))
-                .andExpect(content().string(containsString("ProjectPic")))
-                .andExpect(content().string(containsString("SkillDescr")));
-
     }
 }

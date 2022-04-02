@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<section class="container-fluid footer_section">
+    <section class="info_section layout_padding-top layout_padding2-bottom">
+        <div class="container">
+            <div class="social_container">
+                <h2>
+                    [[${general.getFollows()}]]
+                </h2>
+                <div class="social_box">
+                    <div th:each="social: ${socials}">
+                        <a th:href="${social.getReference()}">
+                            <img th:src="${social.getPicture()}" alt=""/>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</section>

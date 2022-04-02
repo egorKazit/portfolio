@@ -10,4 +10,6 @@ public final class Attributes {
     public static final String PROJECT = "project";
     public static final String PROJECTS = "projects";
     public static final String SKILLS = "skills";
+    public static final String GENERAL = "general";
+    public static final String SOCIALS = "socials";
 }

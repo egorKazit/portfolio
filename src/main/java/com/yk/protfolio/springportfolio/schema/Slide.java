@@ -1,6 +1,5 @@
 package com.yk.protfolio.springportfolio.schema;
 
-import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -23,7 +22,7 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 @EnableAutoConfiguration
 @Entity(name = "slide")
 @Table(name = "slide")
-public class Slide implements Serializable {
+public class Slide {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")

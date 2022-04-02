@@ -32,7 +32,7 @@ public class HomeController {
      * @param model model
      * @return template name
      */
-    @GetMapping("/index.html")
+    @GetMapping(value = {"", "/", "/index.html"})
     public String getHome(Model model) {
         model.addAttribute(Attributes.SLIDES, slideService.getSlides());
         model.addAttribute(Attributes.ABOUT, aboutService.getGeneralAbout());

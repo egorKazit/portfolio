@@ -27,6 +27,16 @@ jobs:
   build:
     name: Build
     runs-on: ubuntu-latest
+    services:
+      db:
+        image: mysql:latest
+        env:
+          MYSQL_ROOT_PASSWORD: DockerMySQLPassword
+          MYSQL_DATABASE: portfolio
+          MYSQL_USER: DockerMySQLUsername
+          MYSQL_PASSWORD: DockerMySQLPassword
+        ports:
+          - "3306:3306"
     steps:
       - uses: actions/checkout@v2
         with:

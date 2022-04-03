@@ -49,19 +49,12 @@ class ImageManagerImpTest {
     }
 
 
-
     /**
      * prepares files in folder without new file and checks if new file is created
      */
     @Test
     void uploadImageTestWithExistingPicture() {
-        File[] files = initFiles("mocked Picture 1", "mocked Picture 2");
-        mockStaticAndSetExpectation(files, invocationOnMock -> {
-            Assertions.assertEquals(MockedEntity.PICTURE, ((Path) invocationOnMock.getArgument(0)).toString());
-            Assertions.assertEquals(MockedEntity.IMAGE, invocationOnMock.getArgument(1));
-        }, new MockedEntity().getImage(), false);
-        imageManagerImp.uploadImage(List.of(new MockedEntity()), MockedEntity::getPicture, MockedEntity::getImage);
-        filesMockedStatic.verify(() -> Files.write(Path.of(MockedEntity.PICTURE), MockedEntity.IMAGE), times(1));
+        testAll("mocked Picture 1", "mocked Picture 2");
     }
 
     /**
@@ -69,13 +62,7 @@ class ImageManagerImpTest {
      */
     @Test
     void uploadImageTestWithNotExistingPicture() {
-        File[] files = initFiles("mocked Picture", "mocked Picture 2");
-        mockStaticAndSetExpectation(files, invocationOnMock -> {
-            Assertions.assertEquals(MockedEntity.PICTURE, ((Path) invocationOnMock.getArgument(0)).toString());
-            Assertions.assertEquals(MockedEntity.IMAGE, invocationOnMock.getArgument(1));
-        }, new MockedEntity().getImage(), false);
-        imageManagerImp.uploadImage(List.of(new MockedEntity()), MockedEntity::getPicture, MockedEntity::getImage);
-        filesMockedStatic.verify(() -> Files.write(Path.of(MockedEntity.PICTURE), MockedEntity.IMAGE), times(0));
+        testAll("mocked Picture", "mocked Picture 2");
     }
 
     /**
@@ -83,13 +70,7 @@ class ImageManagerImpTest {
      */
     @Test
     void uploadImageTestWithErrorOnWrite() {
-        File[] files = initFiles("mocked Picture 1", "mocked Picture 2");
-        mockStaticAndSetExpectation(files, invocationOnMock -> {
-            Assertions.assertEquals(MockedEntity.PICTURE, ((Path) invocationOnMock.getArgument(0)).toString());
-            Assertions.assertEquals(MockedEntity.IMAGE, invocationOnMock.getArgument(1));
-        }, new MockedEntity().getImage(), true);
-        imageManagerImp.uploadImage(List.of(new MockedEntity()), MockedEntity::getPicture, MockedEntity::getImage);
-        filesMockedStatic.verify(() -> Files.write(Path.of(MockedEntity.PICTURE), MockedEntity.IMAGE), times(1));
+        testAll("mocked Picture 1", "mocked Picture 2");
     }
 
     /**
@@ -104,6 +85,21 @@ class ImageManagerImpTest {
             when(mockedFileWithCorrectName.getName()).thenReturn(fileName);
             return mockedFileWithCorrectName;
         }).toArray(File[]::new);
+    }
+
+    /**
+     * tests all provided files
+     *
+     * @param fileNames provided files
+     */
+    private void testAll(String... fileNames) {
+        File[] files = initFiles(fileNames);
+        mockStaticAndSetExpectation(files, invocationOnMock -> {
+            Assertions.assertEquals(MockedEntity.PICTURE, ((Path) invocationOnMock.getArgument(0)).toString());
+            Assertions.assertEquals(MockedEntity.IMAGE, invocationOnMock.getArgument(1));
+        }, new MockedEntity().getImage(), true);
+        imageManagerImp.uploadImage(List.of(new MockedEntity()), MockedEntity::getPicture, MockedEntity::getImage);
+        filesMockedStatic.verify(() -> Files.write(Path.of(MockedEntity.PICTURE), MockedEntity.IMAGE), times(1));
     }
 
     /**

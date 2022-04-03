@@ -58,38 +58,22 @@ class HomeControllerTest {
 
     @Test
     void getHomeAsIndex() throws Exception {
-        mockedAll();
-        mockMvc.perform(get("/")).andDo(print()).andExpect(status().isOk())
-                .andExpect(content().string(containsString("SlideDescr")))
-                .andExpect(content().string(containsString("SlideGenWord")))
-                .andExpect(content().string(containsString("SlidePic")))
-                .andExpect(content().string(containsString("AboutTitle")))
-                .andExpect(content().string(containsString("AboutPic")))
-                .andExpect(content().string(containsString("ProjectPic")))
-                .andExpect(content().string(containsString("SkillDescr")))
-                .andExpect(content().string(containsString("SocialReference")));
-
+        testAll("/");
     }
 
     @Test
     void getHomeAsSlash() throws Exception {
-        mockedAll();
-        mockMvc.perform(get("/index.html")).andDo(print()).andExpect(status().isOk())
-                .andExpect(content().string(containsString("SlideDescr")))
-                .andExpect(content().string(containsString("SlideGenWord")))
-                .andExpect(content().string(containsString("SlidePic")))
-                .andExpect(content().string(containsString("AboutTitle")))
-                .andExpect(content().string(containsString("AboutPic")))
-                .andExpect(content().string(containsString("ProjectPic")))
-                .andExpect(content().string(containsString("SkillDescr")))
-                .andExpect(content().string(containsString("SocialReference")));
-
+        testAll("/index.html");
     }
 
     @Test
     void getHomeAsEmpty() throws Exception {
+        testAll("https://127.0.0.1");
+    }
+
+    private void testAll(String path) throws Exception {
         mockedAll();
-        mockMvc.perform(get("https://127.0.0.1")).andDo(print()).andExpect(status().isOk())
+        mockMvc.perform(get(path)).andDo(print()).andExpect(status().isOk())
                 .andExpect(content().string(containsString("SlideDescr")))
                 .andExpect(content().string(containsString("SlideGenWord")))
                 .andExpect(content().string(containsString("SlidePic")))
@@ -98,7 +82,6 @@ class HomeControllerTest {
                 .andExpect(content().string(containsString("ProjectPic")))
                 .andExpect(content().string(containsString("SkillDescr")))
                 .andExpect(content().string(containsString("SocialReference")));
-
     }
 
     private void mockedAll() throws IllegalAccessException {

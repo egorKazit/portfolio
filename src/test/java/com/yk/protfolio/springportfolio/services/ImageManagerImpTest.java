@@ -54,7 +54,7 @@ class ImageManagerImpTest {
      */
     @Test
     void uploadImageTestWithExistingPicture() {
-        testAll("mocked Picture 1", "mocked Picture 2");
+        testAll(1, "mocked Picture 1", "mocked Picture 2");
     }
 
     /**
@@ -62,7 +62,7 @@ class ImageManagerImpTest {
      */
     @Test
     void uploadImageTestWithNotExistingPicture() {
-        testAll("mocked Picture", "mocked Picture 2");
+        testAll(0, "mocked Picture", "mocked Picture 2");
     }
 
     /**
@@ -70,7 +70,7 @@ class ImageManagerImpTest {
      */
     @Test
     void uploadImageTestWithErrorOnWrite() {
-        testAll("mocked Picture 1", "mocked Picture 2");
+        testAll(1, "mocked Picture 1", "mocked Picture 2");
     }
 
     /**
@@ -92,14 +92,14 @@ class ImageManagerImpTest {
      *
      * @param fileNames provided files
      */
-    private void testAll(String... fileNames) {
+    private void testAll(int timesInvoked, String... fileNames) {
         File[] files = initFiles(fileNames);
         mockStaticAndSetExpectation(files, invocationOnMock -> {
             Assertions.assertEquals(MockedEntity.PICTURE, ((Path) invocationOnMock.getArgument(0)).toString());
-            Assertions.assertEquals(MockedEntity.IMAGE, invocationOnMock.getArgument(1));
+            Assertions.assertEquals(MockedEntity.IMAGE, invocationOnMock.getArgument(0));
         }, new MockedEntity().getImage(), true);
         imageManagerImp.uploadImage(List.of(new MockedEntity()), MockedEntity::getPicture, MockedEntity::getImage);
-        filesMockedStatic.verify(() -> Files.write(Path.of(MockedEntity.PICTURE), MockedEntity.IMAGE), times(1));
+        filesMockedStatic.verify(() -> Files.write(Path.of(MockedEntity.PICTURE), MockedEntity.IMAGE), times(timesInvoked));
     }
 
     /**

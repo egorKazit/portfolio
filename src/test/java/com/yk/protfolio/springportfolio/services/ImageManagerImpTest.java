@@ -56,6 +56,9 @@ class ImageManagerImpTest {
         File finalFolder = mock(File.class);
         when(finalFolder.isDirectory()).thenReturn(true);
         when(finalFolder.getName()).thenReturn("final");
+        File finalFile = mock(File.class);
+        when(finalFile.isDirectory()).thenReturn(false);
+        when(finalFile.getName()).thenReturn("final");
         File nonFinalFolder = mock(File.class);
         when(nonFinalFolder.isDirectory()).thenReturn(true);
         when(nonFinalFolder.getName()).thenReturn("testFolder");
@@ -66,12 +69,24 @@ class ImageManagerImpTest {
         mockedFile = Mockito.mockConstruction(File.class, (mock, context) -> {
             when(mock.exists()).thenReturn(true);
             when(mock.mkdirs()).thenReturn(true);
-            when(mock.listFiles()).thenReturn(new File[]{finalFolder, nonFinalFolder, existingFile});
+            when(mock.listFiles()).thenReturn(new File[]{finalFolder, finalFile, nonFinalFolder, existingFile});
         });
         imageManagerImp.init();
         verify(finalFolder, times(0)).delete();
+        verify(finalFile, times(1)).delete();
         verify(nonFinalFolder, times(0)).delete();
         verify(existingFile, times(1)).delete();
+    }
+
+    @Test
+    void initWithNonExistingFolderNull() {
+        when(customProperties.getStaticImageFolder()).thenReturn("");
+        mockedFile = Mockito.mockConstruction(File.class, (mock, context) -> {
+            when(mock.exists()).thenReturn(true);
+            when(mock.mkdirs()).thenReturn(true);
+            when(mock.listFiles()).thenReturn(null);
+        });
+        imageManagerImp.init();
     }
 
     /**

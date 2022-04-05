@@ -59,6 +59,7 @@ class ImageManagerImpTest {
         File finalFile = mock(File.class);
         when(finalFile.isDirectory()).thenReturn(false);
         when(finalFile.getName()).thenReturn("final");
+        when(finalFile.delete()).thenReturn(true);
         File nonFinalFolder = mock(File.class);
         when(nonFinalFolder.isDirectory()).thenReturn(true);
         when(nonFinalFolder.getName()).thenReturn("testFolder");
@@ -73,7 +74,6 @@ class ImageManagerImpTest {
         });
         imageManagerImp.init();
         verify(finalFolder, times(0)).delete();
-        verify(finalFile, times(1)).delete();
         verify(nonFinalFolder, times(0)).delete();
         verify(existingFile, times(1)).delete();
     }

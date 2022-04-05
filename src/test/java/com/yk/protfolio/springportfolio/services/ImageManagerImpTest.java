@@ -82,23 +82,6 @@ class ImageManagerImpTest {
         verify(existingFile, times(1)).delete();
     }
 
-    @Test
-    @Disabled
-    void initWithNonExistingFolderNull() {
-        AtomicInteger atomicInteger = new AtomicInteger(0);
-        when(customProperties.getStaticImageFolder()).thenReturn("");
-        mockedFile = Mockito.mockConstruction(File.class, (mock, context) -> {
-            when(mock.exists()).thenReturn(true);
-            when(mock.mkdirs()).thenReturn(true);
-            doAnswer(invocationOnMock -> {
-                atomicInteger.getAndIncrement();
-                return null;
-            }).when(mock).listFiles();
-        });
-        imageManagerImp.init();
-        assertEquals(1, atomicInteger.get());
-    }
-
     /**
      * prepares files in folder without new file and checks if new file is created
      */

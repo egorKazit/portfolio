@@ -1,5 +1,7 @@
 package com.yk.protfolio.springportfolio.services;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.doAnswer;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
@@ -12,8 +14,10 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Arrays;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -79,14 +83,20 @@ class ImageManagerImpTest {
     }
 
     @Test
+    @Disabled
     void initWithNonExistingFolderNull() {
+        AtomicInteger atomicInteger = new AtomicInteger(0);
         when(customProperties.getStaticImageFolder()).thenReturn("");
         mockedFile = Mockito.mockConstruction(File.class, (mock, context) -> {
             when(mock.exists()).thenReturn(true);
             when(mock.mkdirs()).thenReturn(true);
-            when(mock.listFiles()).thenReturn(null);
+            doAnswer(invocationOnMock -> {
+                atomicInteger.getAndIncrement();
+                return null;
+            }).when(mock).listFiles();
         });
         imageManagerImp.init();
+        assertEquals(1, atomicInteger.get());
     }
 
     /**

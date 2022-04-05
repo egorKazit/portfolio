@@ -38,6 +38,13 @@ class AboutServiceImpTest {
     }
 
     @Test
+    void getGeneralAboutWithNull() {
+        doNothing().when(imageManager).uploadImage(any(), any(), any());
+        when(aboutDAOImp.getAbout(0)).thenReturn(null);
+        assertNull(aboutServiceImp.getGeneralAbout());
+    }
+
+    @Test
     void getDetailedAbout() {
         About about = new About();
         doNothing().when(imageManager).uploadImage(any(), any(), any());

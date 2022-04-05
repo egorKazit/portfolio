@@ -1,10 +1,11 @@
 package com.yk.protfolio.springportfolio.services;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.mockito.Mockito.when;
 
-import com.yk.protfolio.springportfolio.configuration.CustomProperties;
 import com.yk.protfolio.springportfolio.persistence.GeneralValueDAO;
+import com.yk.protfolio.springportfolio.schema.GeneralValue;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Arrays;
 import java.util.List;
@@ -14,7 +15,6 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
 
 @SpringBootTest
 @Log4j2
@@ -44,6 +44,14 @@ class GenericValuesServiceImpTest {
                     }
                 });
         assertFalse(isFailed.get());
+    }
+
+    @Test
+    void testGetElementByName() {
+        when(generalValueDAO.getGeneralValues()).thenReturn(List.of(
+                GeneralValue.builder().id(0).internalName("Test").externalName("TestExt").build()));
+        assertEquals("TestExt", genericValuesServiceImp.getElementByName("TEST", "TestExtDefault"));
+        assertEquals("TestExtDefault", genericValuesServiceImp.getElementByName("TEST_OTHER", "TestExtDefault"));
     }
 
 }

@@ -1,6 +1,10 @@
 package com.yk.protfolio.springportfolio.services;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.doAnswer;
+import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import com.yk.protfolio.springportfolio.configuration.CustomProperties;
@@ -10,8 +14,10 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Arrays;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -48,6 +54,33 @@ class ImageManagerImpTest {
             filesMockedStatic.close();
     }
 
+    @Test
+    void initWithNonExistingFolder() {
+        when(customProperties.getStaticImageFolder()).thenReturn("");
+        File finalFolder = mock(File.class);
+        when(finalFolder.isDirectory()).thenReturn(true);
+        when(finalFolder.getName()).thenReturn("final");
+        File finalFile = mock(File.class);
+        when(finalFile.isDirectory()).thenReturn(false);
+        when(finalFile.getName()).thenReturn("final");
+        when(finalFile.delete()).thenReturn(true);
+        File nonFinalFolder = mock(File.class);
+        when(nonFinalFolder.isDirectory()).thenReturn(true);
+        when(nonFinalFolder.getName()).thenReturn("testFolder");
+        File existingFile = mock(File.class);
+        when(existingFile.isDirectory()).thenReturn(false);
+        when(existingFile.getName()).thenReturn("testFile");
+        when(existingFile.delete()).thenReturn(true);
+        mockedFile = Mockito.mockConstruction(File.class, (mock, context) -> {
+            when(mock.exists()).thenReturn(true);
+            when(mock.mkdirs()).thenReturn(true);
+            when(mock.listFiles()).thenReturn(new File[]{finalFolder, finalFile, nonFinalFolder, existingFile});
+        });
+        imageManagerImp.init();
+        verify(finalFolder, times(0)).delete();
+        verify(nonFinalFolder, times(0)).delete();
+        verify(existingFile, times(1)).delete();
+    }
 
     /**
      * prepares files in folder without new file and checks if new file is created

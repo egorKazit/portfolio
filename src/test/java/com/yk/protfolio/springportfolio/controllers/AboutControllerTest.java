@@ -8,15 +8,19 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import com.yk.protfolio.springportfolio.components.GenericValuesWrapper;
+import com.yk.protfolio.springportfolio.components.SocialWrapper;
 import com.yk.protfolio.springportfolio.configuration.CustomProperties;
 import com.yk.protfolio.springportfolio.schema.About;
+import com.yk.protfolio.springportfolio.schema.Social;
 import com.yk.protfolio.springportfolio.services.AboutService;
 import com.yk.protfolio.springportfolio.services.GenericValuesService;
 import com.yk.protfolio.springportfolio.services.ImageManager;
+import com.yk.protfolio.springportfolio.services.SocialService;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Arrays;
 import java.util.List;
+import org.apache.commons.lang3.reflect.FieldUtils;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -41,6 +45,9 @@ class AboutControllerTest {
     @MockBean
     GenericValuesService genericValuesService;
 
+    @MockBean
+    SocialService socialService;
+
     @Test
     void getWithId() throws Exception {
         doNothing().when(imageManager).uploadImage(any(), any(), any());
@@ -57,6 +64,13 @@ class AboutControllerTest {
         genericValuesServiceField.setAccessible(true);
         genericValuesServiceField.set(GenericValuesWrapper.class, genericValuesService);
         genericValuesServiceField.setAccessible(false);
+        when(socialService.getSocials()).thenReturn(List.of(Social.builder()
+                .id(0)
+                .reference("SocialReference")
+                .picture("SocialPicture")
+                .image(new byte[]{})
+                .build()));
+        FieldUtils.writeStaticField(SocialWrapper.class, "socialService", socialService, true);
         when(aboutService.getDetailedAbout(0)).thenReturn(About.builder()
                 .id(0)
                 .title("")
@@ -77,6 +91,13 @@ class AboutControllerTest {
                         e.printStackTrace();
                     }
                 });
+        when(socialService.getSocials()).thenReturn(List.of(Social.builder()
+                .id(0)
+                .reference("SocialReference")
+                .picture("SocialPicture")
+                .image(new byte[]{})
+                .build()));
+        FieldUtils.writeStaticField(SocialWrapper.class, "socialService", socialService, true);
         Field genericValuesServiceField = GenericValuesWrapper.class.getDeclaredField("genericValuesService");
         genericValuesServiceField.setAccessible(true);
         genericValuesServiceField.set(GenericValuesWrapper.class, genericValuesService);

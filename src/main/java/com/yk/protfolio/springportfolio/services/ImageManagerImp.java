@@ -36,9 +36,13 @@ class ImageManagerImp implements ImageManager {
         if (!imageFolder.exists()) {
             imageFolder.mkdirs();
         }
-        if (imageFolder.listFiles() != null)
+        if (imageFolder.listFiles() != null) {
             Arrays.stream(Objects.requireNonNull(imageFolder.listFiles())).filter(file -> !file.isDirectory()
                     && !file.getName().equals(FolderConstants.IMAGE_FINAL)).forEach(File::delete);
+        } else {
+            log.atError().log("File List is empty");
+        }
+
     }
 
     /**

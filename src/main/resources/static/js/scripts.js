@@ -35,23 +35,10 @@ function sendForContact() {
     request.send(json);
     let responseJson;
     if (request.status === 201) {
-        responseJson = JSON.parse(request.responseText);
-        // message = responce_json['detail'];
-        // if (message != null) {
-        //     document.getElementById('message-text').innerHTML = message;
-        // }
-        // $('#logInAndRegistration').modal('hide');
         window.alert("Your request has been sent");
+        window.location.reload();
     } else if (request.status === 400) {
         responseJson = JSON.parse(request.responseText);
-        // responce_json = JSON.parse(request.responseText);
-        // username = responce_json['username']
-        // email = responce_json['email']
-        // if (responce_json != null) {
-        //     document.getElementById('message-text').innerHTML = username;
-        // } else if (responce_json != null) {
-        //     document.getElementById('message-text').innerHTML = email;
-        // }
         window.alert("Error(s) during sending: " + responseJson);
     }
     $('#message').modal('show');

@@ -108,7 +108,8 @@
     }
 }
 
-@media (max-width: 480px) {}
+@media (max-width: 480px) {
+}
 
 @media (max-width: 420px) {
     .slider_section .detail-box h1 {
@@ -121,7 +122,8 @@
     }
 }
 
-@media (max-width: 360px) {}
+@media (max-width: 360px) {
+}
 
 @media (min-width: 1200px) {
     .container {

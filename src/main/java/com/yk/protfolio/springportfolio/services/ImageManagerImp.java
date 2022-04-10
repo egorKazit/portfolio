@@ -13,7 +13,6 @@ import java.util.function.Function;
 import javax.annotation.PostConstruct;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
 
 /**
@@ -38,8 +37,7 @@ class ImageManagerImp implements ImageManager {
         if (imageFolder.listFiles() != null) {
             Arrays.stream(Objects.requireNonNull(imageFolder.listFiles())).filter(file -> !file.isDirectory()
                     && !file.getName().equals(FolderConstants.IMAGE_FINAL)).forEach(File::delete);
-        } else {
-            log.atError().log("File List is empty");
+            log.atInfo().log("Old files will be deleted from {}", imageFolder.getName());
         }
 
     }

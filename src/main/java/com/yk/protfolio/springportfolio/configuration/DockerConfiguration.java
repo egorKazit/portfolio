@@ -1,7 +1,6 @@
 package com.yk.protfolio.springportfolio.configuration;
 
-import com.yk.protfolio.springportfolio.components.DockerComposeLoader;
-import com.yk.protfolio.springportfolio.persistence.ExternalProcessService;
+import com.yk.protfolio.springportfolio.services.ExternalProcessService;
 import java.io.IOException;
 import java.net.URL;
 import java.util.stream.Stream;
@@ -15,12 +14,20 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.support.DatabaseStartupValidator;
 
+/**
+ * Configuration to load docker container on startup
+ */
 @Configuration
 public class DockerConfiguration {
 
     @Autowired
     private ExternalProcessService externalProcessService;
 
+    /**
+     * defines that EntityManagerFactory can be initialized only after the current class instance
+     *
+     * @return bean factory post processor
+     */
     @Bean
     public static BeanFactoryPostProcessor dependsOnPostProcessor() {
         return bf -> {
@@ -31,6 +38,12 @@ public class DockerConfiguration {
         };
     }
 
+    /**
+     * sets database validator bean
+     *
+     * @param dataSource database source
+     * @return database validator bean
+     */
     @Bean
     public DatabaseStartupValidator databaseStartupValidator(DataSource dataSource) {
         var dsv = new DatabaseStartupValidator();
@@ -38,9 +51,15 @@ public class DockerConfiguration {
         return dsv;
     }
 
+    /**
+     * loads docker
+     *
+     * @throws IOException          exception on docker config reading
+     * @throws InterruptedException exception on thread interruption
+     */
     @PostConstruct
-    public void loadDocker() throws IOException {
-        URL dockerComposeYml = DockerComposeLoader.class.getClassLoader().getResource("docker-compose.yml");
+    public void loadDocker() throws IOException, InterruptedException {
+        URL dockerComposeYml = DockerConfiguration.class.getClassLoader().getResource("docker-compose.yml");
         assert dockerComposeYml != null;
 
         externalProcessService.init().setContext("docker-compose")
@@ -52,6 +71,9 @@ public class DockerConfiguration {
                 .load();
     }
 
+    /**
+     * hook on application stop
+     */
     @PreDestroy
     public void teardown() {
         externalProcessService.waitForTeardown();

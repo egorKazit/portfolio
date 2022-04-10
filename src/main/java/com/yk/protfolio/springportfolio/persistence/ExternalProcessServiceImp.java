@@ -3,7 +3,10 @@ package com.yk.protfolio.springportfolio.persistence;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.sql.Timestamp;
+import java.time.Instant;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
@@ -67,13 +70,10 @@ public class ExternalProcessServiceImp implements ExternalProcessService {
     @SneakyThrows
     @Override
     public void waitForTeardown() {
-        final ScheduledExecutorService executor = Executors.newSingleThreadScheduledExecutor();
-        final ScheduledFuture<?> promise = executor.scheduleAtFixedRate(() -> {
-            if (PROCESSES.stream().noneMatch(Process::isAlive)) {
-                executor.shutdown();
-            }
-        }, 0, 500, TimeUnit.MILLISECONDS);
-        executor.schedule(() -> promise.cancel(false), 1, TimeUnit.MINUTES);
+        while (PROCESSES.stream().noneMatch(Process::isAlive)) {
+            Thread.sleep(500);
+        }
+        PROCESSES.forEach(Process::destroy);
         log.atInfo().log("All processes are ended");
     }
 

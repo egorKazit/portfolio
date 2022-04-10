@@ -1,6 +1,5 @@
 package com.yk.protfolio.springportfolio.configuration;
 
-import com.yk.protfolio.springportfolio.components.DockerComposeLoader;
 import com.yk.protfolio.springportfolio.persistence.ExternalProcessService;
 import java.io.IOException;
 import java.net.URL;
@@ -40,7 +39,7 @@ public class DockerConfiguration {
 
     @PostConstruct
     public void loadDocker() throws IOException {
-        URL dockerComposeYml = DockerComposeLoader.class.getClassLoader().getResource("docker-compose.yml");
+        URL dockerComposeYml = DockerConfiguration.class.getClassLoader().getResource("docker-compose.yml");
         assert dockerComposeYml != null;
 
         externalProcessService.init().setContext("docker-compose")

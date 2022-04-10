@@ -21,7 +21,6 @@ import org.springframework.stereotype.Component;
  */
 @Log4j2
 @Component
-@Configuration
 class ImageManagerImp implements ImageManager {
 
     @Autowired

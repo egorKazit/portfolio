@@ -1,0 +1,37 @@
+version: '3.3'
+
+services:
+  #service 1: definition of mysql database
+  mysql:
+    image: mysql:latest
+    container_name: mysql
+    volumes:
+      - mysql_data:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=DockerMySQLPassword
+      - MYSQL_USER=DockerMySQLUsername
+      - MYSQL_PASSWORD=DockerMySQLPassword
+      - MYSQL_DATABASE=portfolio
+    command: mysqld --sql_mode="NO_ENGINE_SUBSTITUTION" --default-authentication-plugin=mysql_native_password
+    ports:
+      - "3306:3306"
+    restart: always
+
+
+  #service 2: definition of phpMyAdmin
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:latest
+    container_name: my-php-myadmin
+    ports:
+      - "8082:80"
+    restart: always
+    depends_on:
+      - mysql
+    environment:
+      PMA_HOST: mysql
+      PMA_PORT: 3306
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: DockerMySQLPassword
+
+volumes:
+  mysql_data:

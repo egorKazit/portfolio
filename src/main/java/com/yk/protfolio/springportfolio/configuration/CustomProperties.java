@@ -8,7 +8,6 @@ import org.springframework.stereotype.Component;
 /**
  * Configuration class for custom fields
  */
-@Configuration
 @Component
 public class CustomProperties {
 

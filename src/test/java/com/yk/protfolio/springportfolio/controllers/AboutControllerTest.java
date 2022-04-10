@@ -48,6 +48,7 @@ class AboutControllerTest {
     @MockBean
     SocialService socialService;
 
+
     @Test
     void getWithId() throws Exception {
         doNothing().when(imageManager).uploadImage(any(), any(), any());

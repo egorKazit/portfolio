@@ -1,7 +1,6 @@
 $white: #ffffff;
-$colorPrimary:#fed11f;
-$black:#000000;
-
+$colorPrimary: #fed11f;
+$black: #000000;
 
 
 @mixin main-font {
@@ -15,7 +14,8 @@ $black:#000000;
 
 h1,
 h2,
-h3 {}
+h3 {
+}
 
 @mixin hero_btn($col1) {
   @include secondary-font();
@@ -287,7 +287,6 @@ a:focus {
     }
 
 
-
     a {
       @include hero_btn($white);
       margin-top: 10%;
@@ -442,7 +441,6 @@ a:focus {
     @include hero_btn($black);
   }
 }
-
 
 
 // end about section

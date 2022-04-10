@@ -10,7 +10,7 @@ public interface ExternalProcessService {
 
     ExternalProcessService setFinishMessage(String finishMessage);
 
-    void load() throws IOException;
+    void load() throws IOException, InterruptedException;
 
     void waitForTeardown();
 

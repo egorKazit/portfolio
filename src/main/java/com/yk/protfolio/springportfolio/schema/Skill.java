@@ -31,7 +31,7 @@ public class Skill {
     @NotEmpty(message = "*Please provide description")
     private String description;
 
-    public String[] getDescriptions(){
+    public String[] getDescriptions() {
         return description.split("\n");
     }
 

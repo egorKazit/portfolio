@@ -3,16 +3,10 @@ package com.yk.protfolio.springportfolio.persistence;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.sql.Timestamp;
-import java.time.Instant;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.ScheduledFuture;
-import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.function.Consumer;
 import lombok.SneakyThrows;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
@@ -46,7 +40,7 @@ public class ExternalProcessServiceImp implements ExternalProcessService {
     }
 
     @Override
-    public void load() throws IOException {
+    public void load() throws IOException, InterruptedException {
         assert !isInitialized;
         isInitialized = true;
         ProcessBuilder processBuilder = new ProcessBuilder().command(COMMAND_ARGUMENTS.toArray(String[]::new));
@@ -56,13 +50,11 @@ public class ExternalProcessServiceImp implements ExternalProcessService {
         PROCESSES.add(process);
         final BufferedReader inputStream = new BufferedReader(new InputStreamReader(process.getInputStream()));
         final AtomicBoolean isUpAndRunning = new AtomicBoolean(false);
-        new Thread(() -> redirectStream(process, inputStream, isUpAndRunning, finishMessage)).start();
+        new Thread(() -> redirectStream(process, inputStream, isUpAndRunning, finishMessage, Process::notifyAll)).start();
         log.atInfo().log("Process is started");
         synchronized (process) {
-            try {
+            while (process.isAlive()) {
                 process.wait();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
             }
         }
     }
@@ -77,23 +69,20 @@ public class ExternalProcessServiceImp implements ExternalProcessService {
         log.atInfo().log("All processes are ended");
     }
 
-    private static void redirectStream(final Process process, BufferedReader inputStream, AtomicBoolean isUpAndRunning, String finishMessage) {
+    private static void redirectStream(final Process process, BufferedReader inputStream, AtomicBoolean isUpAndRunning, String finishMessage,
+                                       Consumer<Process> notifyFunction) {
         String line;
-        while (true) {
+        while (!isUpAndRunning.get()) {
             try {
                 if ((line = inputStream.readLine()) != null) {
                     log.atInfo().log(line);
-                    if (!isUpAndRunning.get()) {
-                        if (line.contains(finishMessage)) {
-                            synchronized (process) {
-                                process.notify();
-                            }
-                            isUpAndRunning.set(true);
-                        }
+                    if (!isUpAndRunning.get() && line.contains(finishMessage)) {
+                        notifyFunction.accept(process);
+                        isUpAndRunning.set(true);
                     }
                 }
             } catch (IOException e) {
-                System.out.println(e.getMessage());
+                log.atError().log(e.getMessage());
                 break;
             }
         }

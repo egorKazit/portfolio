@@ -30,16 +30,16 @@ jobs:
   
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
-#    services:
-#      db:
-#        image: mysql:latest
-#        env:
-#          MYSQL_ROOT_PASSWORD: DockerMySQLPassword
-#          MYSQL_DATABASE: portfolio
-#          MYSQL_USER: DockerMySQLUsername
-#          MYSQL_PASSWORD: DockerMySQLPassword
-#        ports:
-#          - "3306:3306"
+    services:
+      db:
+        image: mysql:latest
+        env:
+          MYSQL_ROOT_PASSWORD: DockerMySQLPassword
+          MYSQL_DATABASE: portfolio
+          MYSQL_USER: DockerMySQLUsername
+          MYSQL_PASSWORD: DockerMySQLPassword
+        ports:
+          - "3306:3306"
     
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:

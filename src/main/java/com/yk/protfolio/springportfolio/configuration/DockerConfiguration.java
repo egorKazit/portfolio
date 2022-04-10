@@ -38,7 +38,7 @@ public class DockerConfiguration {
     }
 
     @PostConstruct
-    public void loadDocker() throws IOException {
+    public void loadDocker() throws IOException, InterruptedException {
         URL dockerComposeYml = DockerConfiguration.class.getClassLoader().getResource("docker-compose.yml");
         assert dockerComposeYml != null;
 

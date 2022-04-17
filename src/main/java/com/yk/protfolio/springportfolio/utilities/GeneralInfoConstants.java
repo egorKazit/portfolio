@@ -15,4 +15,11 @@ public class GeneralInfoConstants {
     public static final String PROJECTS = "FOLLOW";
     public static final String SKILLS = "FOLLOW";
     public static final String READ = "READ";
+
+    public static final String EXPAND_PICTURE = "EXPAND_PICTURE";
+
+    public static final String EXPAND_HEADER = "EXPAND_HEADER";
+
+    public static final String EXPAND_TEXT = "EXPAND_TEXT";
+
 }

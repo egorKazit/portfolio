@@ -39,7 +39,7 @@ jobs:
           MYSQL_USER: DockerMySQLUsername
           MYSQL_PASSWORD: DockerMySQLPassword
         ports:
-          - "3306:3306"
+          - "33061:3306"
     
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:

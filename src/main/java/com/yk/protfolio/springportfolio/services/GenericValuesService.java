@@ -22,4 +22,10 @@ public interface GenericValuesService {
 
     String getRead();
 
+    String getExpandPicture();
+
+    String getExpandHeader();
+
+    String getExpandText();
+
 }

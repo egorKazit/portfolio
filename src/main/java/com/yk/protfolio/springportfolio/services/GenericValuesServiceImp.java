@@ -65,6 +65,21 @@ public class GenericValuesServiceImp implements GenericValuesService {
         return getElementByName(GeneralInfoConstants.READ, "Read More");
     }
 
+    @Override
+    public String getExpandPicture() {
+        return getElementByName(GeneralInfoConstants.EXPAND_PICTURE, "images/final/expand-img.jpg");
+    }
+
+    @Override
+    public String getExpandHeader() {
+        return getElementByName(GeneralInfoConstants.EXPAND_HEADER, "Expand Header. Please fill the section in config");
+    }
+
+    @Override
+    public String getExpandText() {
+        return getElementByName(GeneralInfoConstants.EXPAND_TEXT, "Expand Text. Please fill the section in config");
+    }
+
     protected String getElementByName(String name, String defaultValue) {
         return generalValueDAO.getGeneralValues().stream().filter(generalValue -> generalValue.getInternalName()
                         .toUpperCase(Locale.ROOT).equals(name))

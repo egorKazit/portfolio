@@ -5,20 +5,24 @@
 </head>
 
 <body>
+
 <div class="hero_area">
     <!-- header section strats -->
     <header class="header_section">
         <header th:insert="fragments/header.html"></header>
     </header>
     <!-- end header section -->
-
-    <!-- slider section -->
-    <div class="slider_section">
-        <div th:insert="fragments/slides.html"></div>
+    <div th:if="${not #lists.isEmpty(slides)}">
+        <!-- slider section -->
+        <div class="slider_section">
+            <div th:insert="fragments/slides.html"></div>
+        </div>
     </div>
 
     <!-- end slider section -->
 </div>
+
+
 <!-- end hero area -->
 
 <!-- design section -->
@@ -48,32 +52,9 @@
 
 <!-- expand section -->
 
-<section class="expand_section">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-6">
-                <div class="img-box">
-                    <img src="images/final/expand-img.jpg" alt=""/>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="detail-box">
-                    <h2>
-                        Expand your horizons, explore ours. It's all here. It's only
-                        here.
-                    </h2>
-                    <p>
-                        It is a long established fact that a reader will be distracted
-                        by the readable content of a page when looking at its layout.
-                        The point of using LoremIt is a long established fact that a
-                        reader will be distracted by the readable content of a page when
-                        looking at its layout. The point of using Lorem
-                    </p>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+<div>
+    <section th:insert="fragments/expand.html"></section>
+</div>
 
 <!-- end expand section -->
 <div>

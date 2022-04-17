@@ -36,7 +36,7 @@ jobs:
           MYSQL_USER: DockerMySQLUsername
           MYSQL_PASSWORD: DockerMySQLPassword
         ports:
-          - "3306:3306"
+          - "33061:3306"
     steps:
       - uses: actions/checkout@v2
         with:

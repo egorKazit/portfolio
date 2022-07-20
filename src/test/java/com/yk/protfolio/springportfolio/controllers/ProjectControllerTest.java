@@ -35,7 +35,6 @@ class ProjectControllerTest {
         when(projectService.getProject(0)).thenReturn(project);
         mockMvc.perform(get("/project-0.html")).andDo(print()).andExpect(status().isOk())
                 .andExpect(content().string(containsString("TestProject")))
-                .andExpect(content().string(containsString("TestProjectText")))
-                .andExpect(content().string(containsString("pic1")));
+                .andExpect(content().string(containsString("TestProjectText")));
     }
 }

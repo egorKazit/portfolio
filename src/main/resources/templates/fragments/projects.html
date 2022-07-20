@@ -13,6 +13,14 @@
                 <img th:src="${project.getPicture()}" alt=""
                      th:data-url="|project-${project.getId()}.html|"
                      th:onclick="|document.location=this.getAttribute('data-url');return false;|"/>
+                <div class="heading_container">
+                    <a
+                            th:href="|project-${project.getId()}.html|">
+                        <h2>
+                            [[${project.getTitle()}]]
+                        </h2>
+                    </a>
+                </div>
             </div>
         </div>
     </div>

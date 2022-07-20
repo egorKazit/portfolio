@@ -459,7 +459,10 @@ a:focus {
       min-width: 250px;
 
       img {
-        width: 100%;
+        float: left;
+        width:  100px;
+        height: 100px;
+        object-fit: cover;
       }
     }
   }

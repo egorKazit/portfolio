@@ -1,21 +1,18 @@
 <!DOCTYPE html>
 
-<section class="about_section layout_padding" th:fragment="specificAbout(title, text, picture, reference, hiden)">
+<section class="about_section" th:fragment="specificAbout(title, text, picture, reference, hiden)">
     <div class="container">
         <div th:if="!${hiden}" class="heading_container">
             <h2>
                 [[${title}]]
             </h2>
         </div>
-        <div class="box layout_padding2-top layout_padding-bottom">
+        <div class="box">
             <div th:if="${hiden}" class="detail-box">
-                <p>
-                    [[${text}]]
-                </p>
+                <h2 th:utext="${#strings.unescapeJava(#strings.replace(#strings.escapeJava(text),'\n','&lt;br /&gt;'))}">
+                </h2>
             </div>
-            <div th:if="!${hiden}" class="img-box">
-                <img th:src="${picture}" alt=""/>
-            </div>
+            <img th:if="!${hiden}" th:src="${picture}" alt=""/>
         </div>
     </div>
     <div th:if="!${hiden}" class="btn-box">

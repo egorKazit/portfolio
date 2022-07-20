@@ -12,8 +12,8 @@ public class GeneralInfoConstants {
     public static final String WORK = "WORK";
     public static final String CONTACT = "CONTACT";
     public static final String FOLLOW = "FOLLOW";
-    public static final String PROJECTS = "FOLLOW";
-    public static final String SKILLS = "FOLLOW";
+    public static final String PROJECTS = "PROJECTS";
+    public static final String SKILLS = "SKILLS";
     public static final String READ = "READ";
 
     public static final String EXPAND_PICTURE = "EXPAND_PICTURE";

@@ -421,20 +421,20 @@ a:focus {
     color: #000000;
     position: relative;
     background-color: transparent;
-    font-size: 18px;
+    font-size: 2rem;
 }
 
-.about_section a::after {
-    content: "";
-    width: 35px;
-    height: 1px;
-    position: absolute;
-    top: 50%;
-    right: -5px;
-    -webkit-transform: translate(100%, -50%);
-    transform: translate(100%, -50%);
-    background-color: #000000;
-}
+/*.about_section a::after {*/
+/*    content: "";*/
+/*    width: 35px;*/
+/*    height: 1px;*/
+/*    position: absolute;*/
+/*    top: 50%;*/
+/*    right: -5px;*/
+/*    -webkit-transform: translate(100%, -50%);*/
+/*    transform: translate(100%, -50%);*/
+/*    background-color: #000000;*/
+/*}*/
 
 .project_section .project_container {
     display: -webkit-box;

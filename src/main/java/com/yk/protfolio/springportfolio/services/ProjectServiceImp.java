@@ -18,6 +18,9 @@ public class ProjectServiceImp implements ProjectService {
     @Autowired
     private ImageManager imageManager;
 
+    @Autowired
+    private HyperlinkService hyperlinkService;
+
     /**
      * gets list of projects
      *
@@ -38,6 +41,8 @@ public class ProjectServiceImp implements ProjectService {
     @Override
     public Project getProject(int id) {
         Project project = projectDAO.getProject(id);
+        if (project.getText() != null)
+            project.setText(hyperlinkService.replaceWithHyperLink(project.getText()));
         imageManager.uploadImage(List.of(project), Project::getPicture, Project::getImage);
         return project;
     }

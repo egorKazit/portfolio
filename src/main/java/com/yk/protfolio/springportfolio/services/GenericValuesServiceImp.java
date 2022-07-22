@@ -1,6 +1,5 @@
 package com.yk.protfolio.springportfolio.services;
 
-import com.yk.protfolio.springportfolio.configuration.CustomProperties;
 import com.yk.protfolio.springportfolio.persistence.GeneralValueDAO;
 import com.yk.protfolio.springportfolio.schema.GeneralValue;
 import com.yk.protfolio.springportfolio.utilities.GeneralInfoConstants;
@@ -16,9 +15,6 @@ public class GenericValuesServiceImp implements GenericValuesService {
 
     @Autowired
     private GeneralValueDAO generalValueDAO;
-
-    @Autowired
-    private CustomProperties customProperties;
 
     @Override
     public String getPortfolio() {
@@ -78,6 +74,11 @@ public class GenericValuesServiceImp implements GenericValuesService {
     @Override
     public String getExpandText() {
         return getElementByName(GeneralInfoConstants.EXPAND_TEXT, "Expand Text. Please fill the section in config");
+    }
+
+    @Override
+    public String getCVPath() {
+        return getElementByName(GeneralInfoConstants.CV_PATH, "Error");
     }
 
     protected String getElementByName(String name, String defaultValue) {

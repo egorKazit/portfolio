@@ -28,4 +28,6 @@ public interface GenericValuesService {
 
     String getExpandText();
 
+    String getCVPath();
+
 }

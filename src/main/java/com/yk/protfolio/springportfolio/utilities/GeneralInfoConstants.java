@@ -22,4 +22,6 @@ public class GeneralInfoConstants {
 
     public static final String EXPAND_TEXT = "EXPAND_TEXT";
 
+    public static final String CV_PATH = "CV_PATH";
+
 }

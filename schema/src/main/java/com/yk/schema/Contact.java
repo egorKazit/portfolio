@@ -1,7 +1,5 @@
 package com.yk.schema;
 
-//import com.yk.protfolio.springportfolio.kafka.KafkaQueueImp;
-
 import com.yk.processor.BotMessage;
 import com.yk.processor.PostProcessQueueImp;
 import java.io.Serializable;
@@ -54,6 +52,6 @@ public class Contact implements Serializable, BotMessage {
 
     @Override
     public String buildMessage() {
-        return String.format("New message\nfrom: %s\nnumber: %s\nemail: %s\nmessage: %s", name, number, email, message);
+        return String.format("New message%nfrom: %s%nnumber: %s%nemail: %s%nmessage: %s", name, number, email, message);
     }
 }

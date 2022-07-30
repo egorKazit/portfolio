@@ -73,4 +73,6 @@ jobs:
 
       # Runs build
       - name: Run build
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
         run: mvn -B package --file pom.xml

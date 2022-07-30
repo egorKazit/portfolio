@@ -31,9 +31,6 @@ public class MessageService extends TelegramLongPollingBot {
 
     @Override
     public void onUpdateReceived(Update update) {
-        if(update.getMessage().isCommand()){
-
-        }
     }
 
     public void execute(@NonNull UserTopicAssignment userTopicAssignment, @NonNull BotMessage botMessage) {

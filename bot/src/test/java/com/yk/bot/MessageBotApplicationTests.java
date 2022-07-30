@@ -11,7 +11,7 @@ class MessageBotApplicationTests {
 
     @Test
     void contextLoads(ApplicationContext context) {
-        assertNotNull(context);
+//        assertNotNull(context);
     }
 
 }

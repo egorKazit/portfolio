@@ -1,0 +1,21 @@
+{
+  "properties": [
+    {
+      "name": "portfolio.image.folder",
+      "type": "java.lang.String",
+      "description": "Custom folder for images.",
+      "defaultValue": "/tmp/static/images"
+    },
+    {
+      "name": "portfolio.kafka.enabled",
+      "type": "java.lang.Boolean",
+      "description": "If enabled, then message to contant will be moved to kafka.",
+      "defaultValue": "false"
+    },
+    {
+      "name": "portfolio.kafka.topics",
+      "type": "java.util.Map",
+      "description": "List if topics."
+    }
+  ]
+}

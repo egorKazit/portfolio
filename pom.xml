@@ -30,6 +30,11 @@
                 <artifactId>jacoco-maven-plugin</artifactId>
                 <version>0.8.8</version>
             </dependency>
+            <dependency>
+                <groupId>org.awaitility</groupId>
+                <artifactId>awaitility</artifactId>
+                <version>4.0.1</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 

@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 @Service
+@ConditionalOnProperty(value = "portfolio.kafka.enabled", matchIfMissing = true, havingValue = "true")
 @Log4j2
 public class KafkaQueueImp implements KafkaQueue {
 
@@ -29,7 +30,6 @@ public class KafkaQueueImp implements KafkaQueue {
 
     @Override
     @Scheduled(fixedDelay = 500)
-    @ConditionalOnProperty(value = "portfolio.kafka.enabled", matchIfMissing = true, havingValue = "true")
     public void sendData() {
         Object object;
         while ((object = postProcessQueue.getQueue().poll()) != null) {

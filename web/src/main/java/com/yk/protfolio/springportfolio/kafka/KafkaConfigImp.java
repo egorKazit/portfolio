@@ -1,5 +1,6 @@
 package com.yk.protfolio.springportfolio.kafka;
 
+import com.yk.processor.KafkaObjectSerializer;
 import com.yk.protfolio.springportfolio.configuration.CustomProperties;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -24,7 +25,6 @@ public class KafkaConfigImp {
     @Autowired
     private CustomProperties customProperties;
 
-//    @Bean
     public ProducerFactory<String, Object> producerFactory() {
         Map<String, Object> configProps = new HashMap<>();
         configProps.put(

@@ -5,7 +5,8 @@ import org.springframework.kafka.core.ProducerFactory;
 
 public interface KafkaConfig {
 
-    ProducerFactory<String, String> producerFactory();
+    ProducerFactory<String, Object> producerFactory();
 
-    KafkaTemplate<String, String> kafkaTemplate();
+    KafkaTemplate<String, Object> kafkaTemplate();
+
 }

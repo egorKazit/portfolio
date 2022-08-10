@@ -1,0 +1,11 @@
+services:
+  application:
+    image: egorkazit123/portfolio-java
+    ports:
+      - "8080:8080"
+    networks:
+      - "portfolio_portfolio_bridge"
+
+networks:
+  portfolio_portfolio_bridge:
+    external: true

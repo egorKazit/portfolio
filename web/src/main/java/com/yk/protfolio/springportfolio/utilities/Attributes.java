@@ -12,4 +12,7 @@ public final class Attributes {
     public static final String SKILLS = "skills";
     public static final String GENERAL = "general";
     public static final String SOCIALS = "socials";
+
+    public static final String CV_NAME = "cvName";
+
 }

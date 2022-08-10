@@ -10,6 +10,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import com.yk.protfolio.springportfolio.components.GenericValuesWrapper;
 import com.yk.protfolio.springportfolio.components.SocialWrapper;
 import com.yk.protfolio.springportfolio.configuration.CustomProperties;
+import com.yk.protfolio.springportfolio.services.CVNameResolveService;
 import com.yk.schema.About;
 import com.yk.schema.Social;
 import com.yk.protfolio.springportfolio.services.AboutService;
@@ -47,6 +48,9 @@ class AboutControllerTest {
 
     @MockBean
     SocialService socialService;
+
+    @MockBean
+    CVNameResolveService cvNameResolveService;
 
 
     @Test

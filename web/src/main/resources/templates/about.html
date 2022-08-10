@@ -27,11 +27,11 @@
         ${about.isHidden()})"></div>
     </div>
     <section>
-        <a href="cv.doc" download="cv.doc">
+        <a th:href="'/download/' + ${cvName}" th:download="${cvName}">
             <img src="images/final/cv.webp" alt="">
         </a>
         <h2>
-            <a href="cv.doc" download="cv.doc">CV</a>
+            <a th:href="'/download/' + ${cvName}" th:download="${cvName}">CV</a>
         </h2>
     </section>
 </section>

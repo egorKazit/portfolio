@@ -1,5 +1,6 @@
 package com.yk.protfolio.springportfolio.controllers;
 
+import com.yk.protfolio.springportfolio.services.CVNameResolveService;
 import com.yk.schema.About;
 import com.yk.protfolio.springportfolio.services.AboutService;
 import com.yk.protfolio.springportfolio.services.GenericValuesService;
@@ -17,6 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
 /**
@@ -28,6 +30,9 @@ public class AboutController {
 
     @Autowired
     private AboutService aboutService;
+
+    @Autowired
+    private CVNameResolveService cvNameResolveService;
 
     @Autowired
     private GenericValuesService genericValuesService;
@@ -47,11 +52,12 @@ public class AboutController {
         } else {
             model.addAttribute(Attributes.ABOUTS, aboutService.getAboutList());
         }
+        model.addAttribute(Attributes.CV_NAME, cvNameResolveService.resolveCVName(genericValuesService.getCVPath()));
         return ControllerUtils.getPage(Page.ABOUT, model);
     }
 
-    @GetMapping("cv.doc")
-    public void getCV(HttpServletResponse response) {
+    @GetMapping("/download/{cvName}")
+    public void getCV(HttpServletResponse response, @PathVariable String cvName) {
         try (InputStream fileInputStream = new FileInputStream(genericValuesService.getCVPath())) {
             IOUtils.copy(fileInputStream, response.getOutputStream());
             response.flushBuffer();

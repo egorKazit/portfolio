@@ -6,6 +6,7 @@
     <div class="carousel-inner">
         <div th:each="slide, iterstat : ${slides}"
              th:class="${iterstat.index}== 0 ? 'carousel-item':'carousel-item active'">
+            <!--            class="carousel-item active"-->
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-6 offset-lg-1">
@@ -13,7 +14,7 @@
                             <div class="heading_box">
                                 <h2>[[${slide.getDescription()}]] <span th:text="${slide.getGeneralWord()}"></span></h2>
                                 <h1>
-<!--                                    [[${general.getPortfolio()}]]-->
+                                    [[${general.getPortfolio()}]]
                                 </h1>
                             </div>
                         </div>

@@ -51,6 +51,7 @@ public class ContactController {
     public ResponseEntity<String> sendRequest(HttpServletRequest request) throws IOException, JSONException {
         BufferedReader reader = request.getReader();
         JSONObject contact = new JSONObject(reader.lines().collect(Collectors.joining()));
+        log.atTrace().log("Contact data: {}", contact);
         OperationResult<Contact> result = contactService.postContact(contact);
         return ResponseEntity.status(result.isSuccess() ? 201 : 400)
                 .body(result.isSuccess() ? result.getEntity().toString() : result.getMessages());

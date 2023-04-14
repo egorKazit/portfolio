@@ -7,7 +7,7 @@ import com.yk.protfolio.springportfolio.utilities.Page;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.stream.Collectors;
-import javax.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.log4j.Log4j2;
 import org.json.JSONException;
 import org.json.JSONObject;

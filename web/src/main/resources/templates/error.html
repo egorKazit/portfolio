@@ -2,14 +2,14 @@
 <html>
 
 <head>
-    <header th:insert="fragments/basic.html"></header>
+    <header th:insert="~{fragments/basic.html}"></header>
 </head>
 
 <body>
 <div class="hero_area">
     <!-- header section strats -->
     <header class="header_section">
-        <header th:insert="fragments/header.html"></header>
+        <header th:insert="~{fragments/header.html}"></header>
     </header>
     <!-- end header section -->
 </div>
@@ -35,18 +35,18 @@
 
 <!-- info section -->
 <div>
-    <section th:insert="fragments/socials.html"></section>
+    <section th:insert="~{fragments/socials.html}"></section>
 </div>
 <!-- end info_section -->
 
 <!-- footer section -->
 <div>
-    <section th:insert="fragments/footer.html"></section>
+    <section th:insert="~{fragments/footer.html}"></section>
 </div>
 <!-- end footer section -->
 
 <div>
-    <section th:insert="fragments/script.html"></section>
+    <section th:insert="~{fragments/script.html}"></section>
 </div>
 
 </body>

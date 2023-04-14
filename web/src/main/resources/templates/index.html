@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="EN">
 <head>
-    <header th:insert="fragments/basic.html"></header>
+    <header th:insert="~{fragments/basic.html}"></header>
 </head>
 
 <body>
@@ -9,13 +9,13 @@
 <div class="hero_area">
     <!-- header section strats -->
     <header class="header_section">
-        <header th:insert="fragments/header.html"></header>
+        <header th:insert="~{fragments/header.html}"></header>
     </header>
     <!-- end header section -->
     <div th:if="${not #lists.isEmpty(slides)}">
         <!-- slider section -->
         <div class="slider_section">
-            <div th:insert="fragments/slides.html"></div>
+            <div th:insert="~{fragments/slides.html}"></div>
         </div>
     </div>
 
@@ -28,16 +28,16 @@
 <!-- design section -->
 
 <div>
-    <section th:insert="fragments/skills.html"></section>
+    <section th:insert="~{fragments/skills.html}"></section>
 </div>
 
 <section th:if="${about != null}" class="about_section layout_padding-bottom">
-    <div th:insert="fragments/about.html :: specificAbout(
+    <div th:insert="~{fragments/about.html :: specificAbout(
     ${about.getTitle()},
     ${about.getText()},
     ${about.getPicture()},
     |about.html?id=${about.getId()}|,
-    ${about.isHidden()})"></div>
+    ${about.isHidden()})}"></div>
 </section>
 
 <!-- end about section -->
@@ -45,25 +45,25 @@
 <!-- project section -->
 
 <div>
-    <section th:insert="fragments/projects.html"></section>
+    <section th:insert="~{fragments/projects.html}"></section>
 </div>
 
 <!-- end project section -->
 
 <!-- info section -->
 <div>
-    <section th:insert="fragments/socials.html"></section>
+    <section th:insert="~{fragments/socials.html}"></section>
 </div>
 <!-- end info_section -->
 
 <!-- footer section -->
 <div>
-    <section th:insert="fragments/footer.html"></section>
+    <section th:insert="~{fragments/footer.html}"></section>
 </div>
 <!-- end footer section -->
 
 <div>
-    <section th:insert="fragments/script.html"></section>
+    <section th:insert="~{fragments/script.html}"></section>
 </div>
 
 </body>

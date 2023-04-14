@@ -1,5 +1,5 @@
-# For Java 11, try this
-FROM amazoncorretto:11
+# For Java 17, try this
+FROM amazoncorretto:17
 
 # Refer to Maven build -> finalName
 ARG JAR_FILE=target/maven-unit-test.jar

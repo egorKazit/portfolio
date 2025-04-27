@@ -1,5 +1,6 @@
 package com.yk.protfolio.springportfolio.services;
 
+import com.yk.protfolio.springportfolio.configuration.BotRegistration;
 import com.yk.protfolio.springportfolio.configuration.CustomProperties;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
@@ -8,6 +9,7 @@ import org.mockito.*;
 import org.mockito.invocation.InvocationOnMock;
 import org.mockito.stubbing.OngoingStubbing;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.bean.override.mockito.MockitoBean;
 
 import java.io.File;
 import java.io.IOException;
@@ -29,6 +31,9 @@ class ImageManagerImpTest {
 
     @Mock
     CustomProperties customProperties;
+
+    @MockitoBean
+    BotRegistration botRegistration;
 
     private MockedConstruction<File> mockedFile;
     private MockedStatic<Files> filesMockedStatic;

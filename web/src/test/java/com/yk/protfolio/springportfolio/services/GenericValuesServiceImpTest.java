@@ -1,5 +1,6 @@
 package com.yk.protfolio.springportfolio.services;
 
+import com.yk.protfolio.springportfolio.configuration.BotRegistration;
 import com.yk.protfolio.springportfolio.persistence.GeneralValueDAO;
 import com.yk.schema.GeneralValue;
 import lombok.extern.log4j.Log4j2;
@@ -7,6 +8,7 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.bean.override.mockito.MockitoBean;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.Arrays;
@@ -26,6 +28,9 @@ class GenericValuesServiceImpTest {
 
     @InjectMocks
     GenericValuesServiceImp genericValuesServiceImp;
+
+    @MockitoBean
+    BotRegistration botRegistration;
 
     @Test
     void testAllMethodsReturnsNotNull() {

@@ -1,11 +1,13 @@
 package com.yk.protfolio.springportfolio.persistence;
 
 import com.yk.dao.DAOEntityManager;
+import com.yk.protfolio.springportfolio.configuration.BotRegistration;
 import com.yk.schema.Slide;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.bean.override.mockito.MockitoBean;
 
 import java.util.List;
 
@@ -20,6 +22,9 @@ class SlideDAOImpTest {
 
     @InjectMocks
     private SlideDAOImp slideDAOImp;
+
+    @MockitoBean
+    BotRegistration botRegistration;
 
     @Test
     void getSlides() {

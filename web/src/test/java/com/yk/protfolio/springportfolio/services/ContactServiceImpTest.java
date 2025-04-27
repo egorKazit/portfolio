@@ -2,6 +2,7 @@ package com.yk.protfolio.springportfolio.services;
 
 import com.google.gson.Gson;
 import com.yk.processor.UpdateEntityStatus;
+import com.yk.protfolio.springportfolio.configuration.BotRegistration;
 import com.yk.protfolio.springportfolio.persistence.ContactDAO;
 import com.yk.protfolio.springportfolio.utilities.OperationResult;
 import com.yk.schema.Contact;
@@ -10,6 +11,7 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.bean.override.mockito.MockitoBean;
 
 import java.util.List;
 
@@ -25,6 +27,9 @@ class ContactServiceImpTest {
 
     @Mock
     ContactDAO contactDAO;
+
+    @MockitoBean
+    BotRegistration botRegistration;
 
     @Test
     void postContactSuccess() {

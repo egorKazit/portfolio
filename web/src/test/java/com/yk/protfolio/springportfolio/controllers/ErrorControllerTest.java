@@ -1,5 +1,6 @@
 package com.yk.protfolio.springportfolio.controllers;
 
+import com.yk.protfolio.springportfolio.configuration.BotRegistration;
 import com.yk.protfolio.springportfolio.configuration.CustomProperties;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +28,9 @@ class ErrorControllerTest {
 
     @MockitoBean
     CustomProperties customProperties;
+
+    @MockitoBean
+    BotRegistration botRegistration;
 
     @Test
     void getError() throws Exception {

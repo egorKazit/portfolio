@@ -1,5 +1,6 @@
 package com.yk.protfolio.springportfolio.controllers;
 
+import com.yk.protfolio.springportfolio.configuration.BotRegistration;
 import com.yk.protfolio.springportfolio.configuration.CustomProperties;
 import com.yk.protfolio.springportfolio.services.ProjectService;
 import com.yk.schema.Project;
@@ -35,6 +36,8 @@ class WorkControllerTest {
     @MockitoBean
     CustomProperties customProperties;
 
+    @MockitoBean
+    BotRegistration botRegistration;
 
     @Test
     void getWork() throws Exception {

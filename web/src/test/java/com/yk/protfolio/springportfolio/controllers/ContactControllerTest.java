@@ -1,5 +1,31 @@
 package com.yk.protfolio.springportfolio.controllers;
 
+import com.yk.protfolio.springportfolio.components.GenericValuesWrapper;
+import com.yk.protfolio.springportfolio.components.SocialWrapper;
+import com.yk.protfolio.springportfolio.configuration.CustomProperties;
+import com.yk.protfolio.springportfolio.services.ContactService;
+import com.yk.protfolio.springportfolio.services.GenericValuesService;
+import com.yk.protfolio.springportfolio.services.SocialService;
+import com.yk.protfolio.springportfolio.utilities.OperationResult;
+import com.yk.schema.Contact;
+import com.yk.schema.Social;
+import org.apache.commons.lang3.reflect.FieldUtils;
+import org.json.JSONObject;
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceTransactionManagerAutoConfiguration;
+import org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.test.context.bean.override.mockito.MockitoBean;
+import org.springframework.test.web.servlet.MockMvc;
+
+import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
+import java.util.Arrays;
+import java.util.List;
+
 import static org.hamcrest.Matchers.containsString;
 import static org.mockito.Mockito.any;
 import static org.mockito.Mockito.when;
@@ -9,43 +35,23 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-import com.yk.protfolio.springportfolio.components.GenericValuesWrapper;
-import com.yk.protfolio.springportfolio.components.SocialWrapper;
-import com.yk.protfolio.springportfolio.configuration.CustomProperties;
-import com.yk.schema.Contact;
-import com.yk.schema.Social;
-import com.yk.protfolio.springportfolio.services.ContactService;
-import com.yk.protfolio.springportfolio.services.GenericValuesService;
-import com.yk.protfolio.springportfolio.services.SocialService;
-import com.yk.protfolio.springportfolio.utilities.OperationResult;
-import java.lang.reflect.Field;
-import java.lang.reflect.InvocationTargetException;
-import java.util.Arrays;
-import java.util.List;
-import org.apache.commons.lang3.reflect.FieldUtils;
-import org.json.JSONObject;
-import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.test.web.servlet.MockMvc;
-
 @WebMvcTest(ContactController.class)
+@EnableAutoConfiguration(exclude = {DataSourceAutoConfiguration.class, DataSourceTransactionManagerAutoConfiguration.class, HibernateJpaAutoConfiguration.class})
 class ContactControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
 
-    @MockBean
+    @MockitoBean
     ContactService contactService;
 
-    @MockBean
+    @MockitoBean
     GenericValuesService genericValuesService;
 
-    @MockBean
+    @MockitoBean
     CustomProperties customProperties;
 
-    @MockBean
+    @MockitoBean
     SocialService socialService;
 
     @Test

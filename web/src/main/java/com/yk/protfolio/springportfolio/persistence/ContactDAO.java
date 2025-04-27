@@ -1,7 +1,7 @@
 package com.yk.protfolio.springportfolio.persistence;
 
-import com.yk.schema.Contact;
 import com.yk.processor.UpdateEntityStatus;
+import com.yk.schema.Contact;
 
 /**
  * DAO interface to work on Contact Entity

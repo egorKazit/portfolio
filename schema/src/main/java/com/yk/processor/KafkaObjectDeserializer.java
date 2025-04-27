@@ -1,10 +1,11 @@
 package com.yk.processor;
 
+import lombok.extern.log4j.Log4j2;
+import org.apache.kafka.common.serialization.Deserializer;
+
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
-import lombok.extern.log4j.Log4j2;
-import org.apache.kafka.common.serialization.Deserializer;
 
 @Log4j2
 public class KafkaObjectDeserializer implements Deserializer<BotMessage> {

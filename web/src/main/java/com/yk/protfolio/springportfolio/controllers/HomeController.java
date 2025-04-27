@@ -6,7 +6,7 @@ import com.yk.protfolio.springportfolio.services.SkillService;
 import com.yk.protfolio.springportfolio.services.SlideService;
 import com.yk.protfolio.springportfolio.utilities.Attributes;
 import com.yk.protfolio.springportfolio.utilities.Page;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,15 +15,12 @@ import org.springframework.web.bind.annotation.GetMapping;
  * Controller to handle Contract requests
  */
 @Controller
+@AllArgsConstructor
 public class HomeController {
 
-    @Autowired
     private SlideService slideService;
-    @Autowired
     private AboutService aboutService;
-    @Autowired
     private ProjectService projectService;
-    @Autowired
     private SkillService skillService;
 
     /**

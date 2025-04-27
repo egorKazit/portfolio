@@ -1,6 +1,7 @@
 package com.yk.protfolio.springportfolio.persistence;
 
 import com.yk.schema.Skill;
+
 import java.util.List;
 
 /**

@@ -2,18 +2,19 @@ package com.yk.protfolio.springportfolio.persistence;
 
 import com.yk.dao.DAOEntityManager;
 import com.yk.schema.About;
+import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Repository;
+
 import java.util.List;
 import java.util.Map;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
 
 /**
  * DAO class to work on About Entity
  */
 @Repository
+@AllArgsConstructor
 public class AboutDAOImp implements AboutDAO {
 
-    @Autowired
     private DAOEntityManager daoEntityManager;
 
     /**

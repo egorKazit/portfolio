@@ -2,20 +2,19 @@ package com.yk.protfolio.springportfolio.services;
 
 import com.yk.protfolio.springportfolio.persistence.SlideDAOImp;
 import com.yk.schema.Slide;
-import java.util.List;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * Service to work on slide
  */
 @Service
+@AllArgsConstructor
 public class SlideServiceImp implements SlideService {
 
-    @Autowired
     private SlideDAOImp slideDAOImp;
-
-    @Autowired
     private ImageManager imageService;
 
     /**

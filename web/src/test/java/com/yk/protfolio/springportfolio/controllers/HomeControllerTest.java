@@ -1,5 +1,23 @@
 package com.yk.protfolio.springportfolio.controllers;
 
+import com.yk.protfolio.springportfolio.components.GenericValuesWrapper;
+import com.yk.protfolio.springportfolio.components.SocialWrapper;
+import com.yk.protfolio.springportfolio.configuration.CustomProperties;
+import com.yk.protfolio.springportfolio.services.*;
+import com.yk.schema.*;
+import org.apache.commons.lang3.reflect.FieldUtils;
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceTransactionManagerAutoConfiguration;
+import org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.test.context.bean.override.mockito.MockitoBean;
+import org.springframework.test.web.servlet.MockMvc;
+
+import java.util.List;
+
 import static org.hamcrest.Matchers.containsString;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -7,53 +25,32 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-import com.yk.protfolio.springportfolio.components.GenericValuesWrapper;
-import com.yk.protfolio.springportfolio.components.SocialWrapper;
-import com.yk.protfolio.springportfolio.configuration.CustomProperties;
-import com.yk.schema.About;
-import com.yk.schema.Project;
-import com.yk.schema.Skill;
-import com.yk.schema.Slide;
-import com.yk.schema.Social;
-import com.yk.protfolio.springportfolio.services.AboutService;
-import com.yk.protfolio.springportfolio.services.GenericValuesService;
-import com.yk.protfolio.springportfolio.services.ProjectService;
-import com.yk.protfolio.springportfolio.services.SkillService;
-import com.yk.protfolio.springportfolio.services.SlideService;
-import com.yk.protfolio.springportfolio.services.SocialService;
-import java.util.List;
-import org.apache.commons.lang3.reflect.FieldUtils;
-import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.test.web.servlet.MockMvc;
-
 @WebMvcTest(HomeController.class)
+@EnableAutoConfiguration(exclude = {DataSourceAutoConfiguration.class, DataSourceTransactionManagerAutoConfiguration.class, HibernateJpaAutoConfiguration.class})
 class HomeControllerTest {
 
     @Autowired
     MockMvc mockMvc;
 
-    @MockBean
+    @MockitoBean
     SlideService slideService;
 
-    @MockBean
+    @MockitoBean
     AboutService aboutService;
 
-    @MockBean
+    @MockitoBean
     ProjectService projectService;
 
-    @MockBean
+    @MockitoBean
     SkillService skillService;
 
-    @MockBean
+    @MockitoBean
     GenericValuesService genericValuesService;
 
-    @MockBean
+    @MockitoBean
     SocialService socialService;
 
-    @MockBean
+    @MockitoBean
     CustomProperties customProperties;
 
     @Test

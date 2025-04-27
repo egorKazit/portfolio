@@ -1,18 +1,18 @@
 package com.yk.protfolio.springportfolio.persistence;
 
 import com.yk.dao.DAOEntityManager;
-import com.yk.schema.Contact;
 import com.yk.processor.UpdateEntityStatus;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.yk.schema.Contact;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Repository;
 
 /**
  * DAO class to work on Contact Entity
  */
 @Repository
+@AllArgsConstructor
 public class ContactDAOImp implements ContactDAO {
 
-    @Autowired
     private DAOEntityManager daoEntityManager;
 
     /**

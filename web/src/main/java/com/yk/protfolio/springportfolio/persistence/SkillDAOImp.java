@@ -2,17 +2,18 @@ package com.yk.protfolio.springportfolio.persistence;
 
 import com.yk.dao.DAOEntityManager;
 import com.yk.schema.Skill;
-import java.util.List;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 /**
  * DAO class to work on Skill Entity
  */
 @Repository
+@AllArgsConstructor
 public class SkillDAOImp implements SkillDAO {
 
-    @Autowired
     private DAOEntityManager daoEntityManager;
 
     /**

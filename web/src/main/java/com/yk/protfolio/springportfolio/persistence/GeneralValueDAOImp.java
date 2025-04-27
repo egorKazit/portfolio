@@ -2,17 +2,18 @@ package com.yk.protfolio.springportfolio.persistence;
 
 import com.yk.dao.DAOEntityManager;
 import com.yk.schema.GeneralValue;
-import java.util.List;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * DAO class to work on General Entity
  */
 @Service
+@AllArgsConstructor
 public class GeneralValueDAOImp implements GeneralValueDAO {
 
-    @Autowired
     private DAOEntityManager daoEntityManager;
 
     /**

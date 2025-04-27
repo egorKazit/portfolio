@@ -1,6 +1,7 @@
 package com.yk.protfolio.springportfolio.persistence;
 
 import com.yk.schema.Social;
+
 import java.util.List;
 
 /**

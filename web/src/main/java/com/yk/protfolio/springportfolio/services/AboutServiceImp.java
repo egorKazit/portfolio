@@ -2,20 +2,19 @@ package com.yk.protfolio.springportfolio.services;
 
 import com.yk.protfolio.springportfolio.persistence.AboutDAO;
 import com.yk.schema.About;
-import java.util.List;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * Service to work on about
  */
 @Service
+@AllArgsConstructor
 public class AboutServiceImp implements AboutService {
 
-    @Autowired
     private AboutDAO aboutDAO;
-
-    @Autowired
     private ImageManager imageManager;
 
     /**

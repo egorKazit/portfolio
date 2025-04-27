@@ -2,20 +2,19 @@ package com.yk.protfolio.springportfolio.services;
 
 import com.yk.protfolio.springportfolio.persistence.SocialDAO;
 import com.yk.schema.Social;
-import java.util.List;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * Service class to work on social
  */
 @Service
+@AllArgsConstructor
 public class SocialServiceImp implements SocialService {
 
-    @Autowired
     private SocialDAO socialDAO;
-
-    @Autowired
     private ImageManager imageManager;
 
     /**

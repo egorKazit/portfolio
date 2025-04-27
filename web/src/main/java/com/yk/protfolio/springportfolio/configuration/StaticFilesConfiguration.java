@@ -1,22 +1,23 @@
 package com.yk.protfolio.springportfolio.configuration;
 
-import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
+import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j2;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * Handler to setup static folders
  */
 @Configuration
 @Log4j2
+@AllArgsConstructor
 public class StaticFilesConfiguration implements WebMvcConfigurer {
 
-    @Autowired
     private CustomProperties customProperties;
 
     private static final List<String> CLASSPATH_RESOURCE_LOCATIONS =

@@ -5,8 +5,9 @@ import com.yk.protfolio.springportfolio.components.SocialWrapper;
 import com.yk.protfolio.springportfolio.utilities.Attributes;
 import com.yk.protfolio.springportfolio.utilities.HtmlConstants;
 import com.yk.protfolio.springportfolio.utilities.Page;
-import java.util.stream.Stream;
 import org.springframework.ui.Model;
+
+import java.util.stream.Stream;
 
 /**
  * controller utils

@@ -1,9 +1,7 @@
 package com.yk.protfolio.springportfolio.services;
 
-import com.yk.schema.Contact;
 import com.yk.protfolio.springportfolio.utilities.OperationResult;
-import org.json.JSONException;
-import org.json.JSONObject;
+import com.yk.schema.Contact;
 
 /**
  * Service interface to work on contract
@@ -14,7 +12,6 @@ public interface ContactService {
      *
      * @param contact contract
      * @return operation result
-     * @throws JSONException error on json parsing
      */
-    OperationResult<Contact> postContact(JSONObject contact) throws JSONException;
+    OperationResult<Contact> postContact(Contact contact);
 }

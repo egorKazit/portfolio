@@ -1,10 +1,11 @@
 package com.yk.protfolio.springportfolio.utilities;
 
-import java.util.List;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.boot.configurationprocessor.json.JSONArray;
+
+import java.util.List;
 
 @Builder
 @Log4j2

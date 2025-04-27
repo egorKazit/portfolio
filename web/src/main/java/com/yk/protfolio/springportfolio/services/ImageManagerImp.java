@@ -2,6 +2,11 @@ package com.yk.protfolio.springportfolio.services;
 
 import com.yk.protfolio.springportfolio.configuration.CustomProperties;
 import com.yk.protfolio.springportfolio.utilities.FolderConstants;
+import jakarta.annotation.PostConstruct;
+import lombok.AllArgsConstructor;
+import lombok.extern.log4j.Log4j2;
+import org.springframework.stereotype.Component;
+
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -10,19 +15,15 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
-import jakarta.annotation.PostConstruct;
-import lombok.extern.log4j.Log4j2;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
 /**
  * Service class to work on image
  */
 @Log4j2
 @Component
+@AllArgsConstructor
 class ImageManagerImp implements ImageManager {
 
-    @Autowired
     private CustomProperties customProperties;
 
     /**

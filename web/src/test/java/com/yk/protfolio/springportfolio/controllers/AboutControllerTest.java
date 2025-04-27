@@ -1,5 +1,27 @@
 package com.yk.protfolio.springportfolio.controllers;
 
+import com.yk.protfolio.springportfolio.components.GenericValuesWrapper;
+import com.yk.protfolio.springportfolio.components.SocialWrapper;
+import com.yk.protfolio.springportfolio.configuration.CustomProperties;
+import com.yk.protfolio.springportfolio.services.*;
+import com.yk.schema.About;
+import com.yk.schema.Social;
+import org.apache.commons.lang3.reflect.FieldUtils;
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceTransactionManagerAutoConfiguration;
+import org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.test.context.bean.override.mockito.MockitoBean;
+import org.springframework.test.web.servlet.MockMvc;
+
+import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
+import java.util.Arrays;
+import java.util.List;
+
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.when;
@@ -7,49 +29,29 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-import com.yk.protfolio.springportfolio.components.GenericValuesWrapper;
-import com.yk.protfolio.springportfolio.components.SocialWrapper;
-import com.yk.protfolio.springportfolio.configuration.CustomProperties;
-import com.yk.protfolio.springportfolio.services.CVNameResolveService;
-import com.yk.schema.About;
-import com.yk.schema.Social;
-import com.yk.protfolio.springportfolio.services.AboutService;
-import com.yk.protfolio.springportfolio.services.GenericValuesService;
-import com.yk.protfolio.springportfolio.services.ImageManager;
-import com.yk.protfolio.springportfolio.services.SocialService;
-import java.lang.reflect.Field;
-import java.lang.reflect.InvocationTargetException;
-import java.util.Arrays;
-import java.util.List;
-import org.apache.commons.lang3.reflect.FieldUtils;
-import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.test.web.servlet.MockMvc;
-
 @WebMvcTest(AboutController.class)
+@EnableAutoConfiguration(exclude = {DataSourceAutoConfiguration.class, DataSourceTransactionManagerAutoConfiguration.class, HibernateJpaAutoConfiguration.class})
 class AboutControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
 
-    @MockBean
+    @MockitoBean
     AboutService aboutService;
 
-    @MockBean
+    @MockitoBean
     ImageManager imageManager;
 
-    @MockBean
+    @MockitoBean
     CustomProperties customProperties;
 
-    @MockBean
+    @MockitoBean
     GenericValuesService genericValuesService;
 
-    @MockBean
+    @MockitoBean
     SocialService socialService;
 
-    @MockBean
+    @MockitoBean
     CVNameResolveService cvNameResolveService;
 
 

@@ -2,17 +2,18 @@ package com.yk.protfolio.springportfolio.services;
 
 import com.yk.protfolio.springportfolio.persistence.SkillDAO;
 import com.yk.schema.Skill;
-import java.util.List;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * Service to work on skill
  */
 @Service
+@AllArgsConstructor
 public class SkillServiceImp implements SkillService {
 
-    @Autowired
     private SkillDAO skillDAO;
 
     /**

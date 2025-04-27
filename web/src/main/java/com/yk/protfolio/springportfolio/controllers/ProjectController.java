@@ -4,7 +4,7 @@ import com.yk.protfolio.springportfolio.services.ProjectService;
 import com.yk.protfolio.springportfolio.utilities.Attributes;
 import com.yk.protfolio.springportfolio.utilities.HtmlConstants;
 import com.yk.protfolio.springportfolio.utilities.Page;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,9 +14,9 @@ import org.springframework.web.bind.annotation.PathVariable;
  * Controller to handle Project requests
  */
 @Controller
+@AllArgsConstructor
 public class ProjectController {
 
-    @Autowired
     private ProjectService projectService;
 
     /**

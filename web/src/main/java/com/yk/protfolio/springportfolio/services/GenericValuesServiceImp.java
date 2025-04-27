@@ -1,19 +1,20 @@
 package com.yk.protfolio.springportfolio.services;
 
 import com.yk.protfolio.springportfolio.persistence.GeneralValueDAO;
-import com.yk.schema.GeneralValue;
 import com.yk.protfolio.springportfolio.utilities.GeneralInfoConstants;
-import java.util.Locale;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.yk.schema.GeneralValue;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+
+import java.util.Locale;
 
 /**
  * Service to control text from back-end side
  */
 @Service
+@AllArgsConstructor
 public class GenericValuesServiceImp implements GenericValuesService {
 
-    @Autowired
     private GeneralValueDAO generalValueDAO;
 
     @Override

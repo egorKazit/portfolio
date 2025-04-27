@@ -1,32 +1,22 @@
 package com.yk.protfolio.springportfolio.services;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.doAnswer;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
-
 import com.yk.protfolio.springportfolio.configuration.CustomProperties;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+import org.mockito.*;
+import org.mockito.invocation.InvocationOnMock;
+import org.mockito.stubbing.OngoingStubbing;
+import org.springframework.boot.test.context.SpringBootTest;
+
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Arrays;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicInteger;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Disabled;
-import org.junit.jupiter.api.Test;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.MockedConstruction;
-import org.mockito.MockedStatic;
-import org.mockito.Mockito;
-import org.mockito.invocation.InvocationOnMock;
-import org.mockito.stubbing.OngoingStubbing;
-import org.springframework.boot.test.context.SpringBootTest;
+
+import static org.mockito.Mockito.*;
 
 /**
  * Test image service

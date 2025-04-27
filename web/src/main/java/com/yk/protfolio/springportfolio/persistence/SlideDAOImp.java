@@ -2,17 +2,18 @@ package com.yk.protfolio.springportfolio.persistence;
 
 import com.yk.dao.DAOEntityManager;
 import com.yk.schema.Slide;
-import java.util.List;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 /**
  * DAO class to work on Slide Entity
  */
 @Repository
+@AllArgsConstructor
 public class SlideDAOImp implements SlideDAO {
 
-    @Autowired
     private DAOEntityManager daoEntityManager;
 
     /**

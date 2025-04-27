@@ -1,40 +1,37 @@
 package com.yk.protfolio.springportfolio.controllers;
 
-import com.yk.protfolio.springportfolio.services.CVNameResolveService;
-import com.yk.schema.About;
 import com.yk.protfolio.springportfolio.services.AboutService;
+import com.yk.protfolio.springportfolio.services.CVNameResolveService;
 import com.yk.protfolio.springportfolio.services.GenericValuesService;
 import com.yk.protfolio.springportfolio.utilities.Attributes;
 import com.yk.protfolio.springportfolio.utilities.Page;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.List;
-import java.util.Optional;
+import com.yk.schema.About;
 import jakarta.servlet.http.HttpServletResponse;
+import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.apache.tomcat.util.http.fileupload.IOUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.List;
+import java.util.Optional;
+
 /**
  * Controller to handle About requests
  */
 @Controller
 @Log4j2
+@AllArgsConstructor
 public class AboutController {
 
-    @Autowired
     private AboutService aboutService;
-
-    @Autowired
     private CVNameResolveService cvNameResolveService;
-
-    @Autowired
     private GenericValuesService genericValuesService;
 
     /**

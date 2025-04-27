@@ -1,9 +1,6 @@
 package com.yk.dao;
 
 import com.yk.processor.UpdateEntityStatus;
-import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.NoResultException;
 import jakarta.persistence.PersistenceException;
@@ -12,18 +9,22 @@ import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Predicate;
 import jakarta.persistence.criteria.Root;
 import jakarta.transaction.Transactional;
+import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j2;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 /**
  * DAO entity manager class
  */
 @Component
 @Log4j2
+@AllArgsConstructor
 class DAOEntityManagerImp implements DAOEntityManager {
 
-    @Autowired
     private EntityManager entityManager;
 
     /**
@@ -56,7 +57,7 @@ class DAOEntityManagerImp implements DAOEntityManager {
         Root<E> tRoot = criteriaQuery.from(entityClass);
         List<Predicate> predicates = keys.entrySet().stream()
                 .map(keyValue -> criteriaBuilder.and(criteriaBuilder.equal(tRoot.get(keyValue.getKey()), keyValue.getValue())))
-                .collect(Collectors.toList());
+                .toList();
         Predicate finalPredicate = criteriaBuilder.and(predicates.toArray(Predicate[]::new));
         criteriaQuery.where(finalPredicate);
         try {

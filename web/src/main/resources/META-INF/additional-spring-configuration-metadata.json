@@ -7,15 +7,10 @@
       "defaultValue": "/tmp/static/images"
     },
     {
-      "name": "portfolio.kafka.enabled",
+      "name": "portfolio.direct-notify.enabled",
       "type": "java.lang.Boolean",
-      "description": "If enabled, then message to contant will be moved to kafka.",
+      "description": "If enabled, then message to contact will be moved to telegram directly.",
       "defaultValue": "false"
-    },
-    {
-      "name": "portfolio.kafka.topics",
-      "type": "java.util.Map",
-      "description": "List if topics."
     }
   ]
 }

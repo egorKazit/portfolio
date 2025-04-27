@@ -1,15 +1,15 @@
 package com.yk.protfolio.springportfolio.persistence;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.when;
-
 import com.yk.dao.DAOEntityManager;
-import com.yk.schema.Contact;
 import com.yk.processor.UpdateEntityStatus;
+import com.yk.schema.Contact;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.springframework.boot.test.context.SpringBootTest;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.when;
 
 @SpringBootTest
 class ContactDAOImpTest {

@@ -1,9 +1,10 @@
 package com.yk.processor;
 
-import java.io.ByteArrayOutputStream;
-import java.io.ObjectOutputStream;
 import lombok.extern.log4j.Log4j2;
 import org.apache.kafka.common.serialization.Serializer;
+
+import java.io.ByteArrayOutputStream;
+import java.io.ObjectOutputStream;
 
 @Log4j2
 public class KafkaObjectSerializer implements Serializer<Object> {

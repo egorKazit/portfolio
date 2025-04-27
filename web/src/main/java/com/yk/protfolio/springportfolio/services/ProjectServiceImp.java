@@ -2,23 +2,20 @@ package com.yk.protfolio.springportfolio.services;
 
 import com.yk.protfolio.springportfolio.persistence.ProjectDAO;
 import com.yk.schema.Project;
-import java.util.List;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * Service to work on project
  */
 @Service
+@AllArgsConstructor
 public class ProjectServiceImp implements ProjectService {
 
-    @Autowired
     private ProjectDAO projectDAO;
-
-    @Autowired
     private ImageManager imageManager;
-
-    @Autowired
     private HyperlinkService hyperlinkService;
 
     /**
